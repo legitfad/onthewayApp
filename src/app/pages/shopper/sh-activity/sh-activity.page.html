@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>Activity Page</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<h1 class ="header1">Activity Page</h1>
+<body>
+  <ion-card  *ngFor = "let item of acceptedOrders" [routerLink] = "['/sh-order-info', item.id]" >
+<ion-card-header>
+  <div class = "border1">
+  <ion-icon [name]= item.custImage slot="start"></ion-icon>
+  <p class= "contentAdjust1">
+  <ion-card-title> {{item.custName}}</ion-card-title>
+  <ion-card-subtitle>{{item.mallName}}</ion-card-subtitle>
+    <ion-button (click)="returnfield(item)" class ="availButton" 
+    size = "small" color = "warning" shape = "round" >{{item.status}}</ion-button>
+  </p>
+</div>
+</ion-card-header>
+  </ion-card>
+</body>
+</ion-content>

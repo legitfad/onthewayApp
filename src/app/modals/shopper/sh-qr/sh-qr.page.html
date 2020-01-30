@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="Close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card class="ion-text-center">
+
+    <h1>Confirm Delivery</h1>
+    <p>Please check customer order, <br> and provide the QR code to your customer.</p>
+   
+ 
+<ion-card *ngIf="qrData" class="ion-text-center">
+  <ngx-qrcode 
+  [qrc-element-type]="elementType" [(qrc-value)]="qrData" qrc-class="my-code">
+  </ngx-qrcode>
+</ion-card>
+
+  </ion-card>
+
+</ion-content>

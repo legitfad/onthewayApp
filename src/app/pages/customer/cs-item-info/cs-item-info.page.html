@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+    <ion-title>Item Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <ion-grid>
+   <ion-row>
+     <ion-col size="6" *ngFor = "let item of products">
+      <div class="item-card">
+        <form [formGroup]="selectStatusForm" (ngSubmit)="done()">
+        <ion-select placeholder="Select One">
+       <ion-select-option *ngFor = "let option of status" [value]="option">
+         {{option}}
+       </ion-select-option>
+       <ion-label *ngIf = "selectStatusForm.controls.status.errors && submitted" color = "danger">
+       Please select one
+      </ion-label>
+          <!-- <ion-select-option value="Available">Available</ion-select-option>
+          <ion-select-option value="No Stock">No Stock</ion-select-option>
+          <ion-select-option value="Not Enough item">Not Enough item</ion-select-option>-->
+        </ion-select>
+      </form>
+         <img [src]=item.image alt="" class="image-card">
+         <div> {{item.name}}</div>
+         <div>x{{item.quantity}}</div>
+         <ion-button color= "success" type="submit">Done</ion-button>
+       </div>
+     </ion-col>
+   </ion-row>
+ </ion-grid>
+
+</ion-content>

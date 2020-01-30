@@ -1,0 +1,39 @@
+.logo {
+    font-size: 25vh;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    color: #1a8fed;
+}
+
+h1 {
+    color: grey;
+    font-size: 1em;
+    text-align: center;
+}
+h2 {
+    color: black;
+    text-align: center;
+}
+
+.rowStyle {
+    background-color: #edf7ff;
+    padding-left: 10px;
+    border-radius: 15px 50px;
+    margin-top: 5px; 
+
+    ion-icon {
+        margin: 10px;
+    }   
+}
+
+.icon {
+    color: #005ba3;
+}
+
+.button {
+    --border-radius: 15px 50px;
+    font-size: 1em;
+}

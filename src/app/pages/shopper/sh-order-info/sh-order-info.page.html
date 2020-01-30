@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    <ion-title>Order Information</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngFor = "let item of orderById">
+  <div class = "content1">
+ Order ID<b class = "p2">{{orderId}}</b>
+ <!--<ion-text color ="Dark" class = "custName">-->
+<p>{{item.custName}}</p>
+ <ion-button class ="availButton" size = "small" color = "warning" shape = "round" [routerLink] = "['/test']" (click)="updateSTATUS(item)">
+   {{item.status}}
+  </ion-button>
+<p class="p3">
+  {{item.status}} &nbsp; {{item.mallName}}
+</p>
+<!--</ion-text>-->
+</div>
+</ion-item>
+  <ion-list>
+<ion-item-sliding *ngFor = "let item of orderItem" (ionSwipe)= "delete(item)">
+   <ion-item>
+  <ion-thumbnail slot="start">
+    <ion-img [src]="item.ItemImage"></ion-img>
+  </ion-thumbnail>
+  <ion-label>
+    <div class = 'itemDetails'>
+<h2>
+{{item.StoreName}}
+</h2>
+<p class="itemLeft">{{item.ItemName}} x{{item.Quantity}}</p>
+<p class="priceRight">{{item.ItemPrice | currency}}</p>
+</div>
+  </ion-label>
+</ion-item>
+<ion-item-options>
+<ion-button full expandable (click)="updateItem(item)">
+  Not Available
+  <ion-icon name="trash"></ion-icon>
+</ion-button>
+</ion-item-options>
+</ion-item-sliding>
+  </ion-list>
+  <!-- <ion-button horizontal ="end" fill="outline" color="success" size="small">Ready</ion-button> -->
+  <!-- <ion-list>
+    <ion-item>
+      <ion-label>
+        <p class="itemLeft">Subtotal<br/>Additional Charges</p>
+        <p class="priceRight">$42.90<br/>$0.00</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label>
+        <p class="itemLeft"><b>Total</b></p>
+        <p class="priceRight">$42.90</p>
+      </ion-label>
+    </ion-item>
+  </ion-list> -->
+</ion-content>

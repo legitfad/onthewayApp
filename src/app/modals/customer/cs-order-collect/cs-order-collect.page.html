@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="Close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card class="ion-text-center">
+
+    <h1>Confirm Collection</h1>
+    <p>Please check your order, <br> and scan the QR code provided by your shopper.</p>
+   
+    <ion-button expand="block" (click)="scanCode()" color="secondary">
+      <ion-icon name="qr-scanner"></ion-icon>
+      &nbsp; Scan Code
+    </ion-button>
+    
+  </ion-card>
+
+</ion-content>
