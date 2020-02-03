@@ -12,18 +12,15 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ShActivityPage implements OnInit {
 
   order: orderTry[];
-
   acceptedOrders: Array<any>
   activatedRoute: any;
   orderServiceService: any;
   AcceptOrder: any;
   orderById: any;
 
-  constructor(
-    private orderItemService: FirebaseOrderService,
+  constructor(private orderItemService: FirebaseOrderService,
     private orderService: OrderServiceService,
-    private auth: AuthService
-  ) {
+    private auth: AuthService) {
     const user = this.auth.getCurrentUser();
     this.orderService.getAcceptedOrder(user.email).subscribe(res => {
       console.log('res: ', res);
@@ -36,17 +33,19 @@ export class ShActivityPage implements OnInit {
     //   result => this.order = result
     // );
     //   }
-
   }
 
   returnfield(){
     this.activatedRoute.params.subscribe(data => {
       this.orderServiceService.getOrderById(data.id).subscribe(res => {
-        console.log('res: ', res);
-        this.AcceptOrder = res;
-        this.orderById = this.AcceptOrder;
-         console.log('OrderById: ', this.orderById);
+ 
+      console.log('res: ', res);
+      this.AcceptOrder = res;
+      this.orderById = this.AcceptOrder;
+
+      console.log('OrderById: ', this.orderById);
      })
    })
   }
+
 }

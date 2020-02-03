@@ -17,6 +17,7 @@ export interface UserCredentials {
 })
 export class AuthService {
 
+  static user: User = null;
   user: User = null;
   username = '';
 
@@ -32,6 +33,13 @@ export class AuthService {
             this.username = res['username'];
           })
         ).subscribe();
+      }
+    });
+    firebase.auth().onAuthStateChanged((firebaseUser: firebase.User) => {
+      if (firebaseUser) {
+        this.user.email = firebaseUser.email;
+      } else {
+        this.user.email = '';
       }
     })
   }
@@ -88,6 +96,18 @@ export class AuthService {
 
   getCurrentUser(){
     return this.user;
+  }
+
+  static initialize() {
+    firebase.auth().onAuthStateChanged((firebaseUser: firebase.User) => {
+      if (firebaseUser) {                
+          this.user.email = firebaseUser.email;
+          console.log('User ' + this.user.email);            
+      } else {                
+          console.log('User logged out');                
+          this.user.email = undefined;            
+      }        
+    });    
   }
  
 

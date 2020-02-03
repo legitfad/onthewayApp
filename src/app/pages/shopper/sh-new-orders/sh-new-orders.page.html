@@ -1,9 +1,75 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>shNewOrders</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  
+  <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)" (ionPull)="ionPull($event)"
+    (ionStart)="ionStart($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  <h1 class="heading">New Orders</h1>
+  <ion-searchbar showCancelButton (ionInput)="onInput($event)"></ion-searchbar>
+
+      <ion-card *ngFor="let item of allOrder"> 
+        <!-- [routerLink]="['/accept-order',item.id]" -->
+        <ion-row>
+             <ion-col size="6.5">
+             <ion-card-header no-padding class="row2">
+          <!-- <ion-thumbnail slot="start">
+            <img [src]=item.custImage>
+            </ion-thumbnail> -->
+            <ion-card-title class="card">{{item.custName}}</ion-card-title>
+          </ion-card-header>
+              <ion-card-subtitle class="card">{{item.mallName}}</ion-card-subtitle>
+         
+            </ion-col>
+
+            <ion-col size="2.5">
+              <ion-button position="fixed" class="availButton" size="small" color="warning"
+              shape="round"><p class="text-color">{{item.status}}</p></ion-button>
+            </ion-col>
+       
+      </ion-row>
+
+      <ion-row align-items-center>
+          <ion-col></ion-col>
+          <ion-col size="6">
+            <ion-button expand="block" color="success" (click) = "addShopper(item)">
+              Accept
+            </ion-button>
+          </ion-col>
+          <ion-col></ion-col>
+      </ion-row>
+
+      </ion-card>
+      <!-- <ion-label text-wrap>
+        <ion-item *ngFor="let item of allOrder">
+        <div class="border1">
+
+          <ion-icon [name]=item.custImage slot="start"></ion-icon>
+          <p class="contentAdjust1">
+            <b> {{item.custName}}</b><br />
+            {{item.mallName}} &nbsp;
+            <ion-button horizontal="end" position="fixed" class="availButton" size="small" color="warning"
+              shape="round">{{item.status}}</ion-button>
+          </p>
+        </div>
+      </ion-item>
+      </ion-label> -->
+
+    <!--<div class = "border1">
+    <p class= "contentAdjust1"><b>Customer Name</b><br/>
+      5 Store, 6 Items &nbsp;
+      <ion-button class ="availButton" size = "small" color = "warning" shape = "round">Available</ion-button>
+    </p>
+  </div>-->
 
 </ion-content>
