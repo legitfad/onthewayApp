@@ -62,6 +62,18 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'cs-shopping-cart',
+    loadChildren: () => import('./pages/customer/cs-shopping-cart/cs-shopping-cart.module').then( m => m.CsShoppingCartPageModule)
+  },
+  {
+    path: 'cs-home',
+    loadChildren: () => import('./pages/customer/cs-home/cs-home.module').then( m => m.CsHomePageModule)
+  },
+  {
+    path: 'cs-list',
+    loadChildren: () => import('./pages/customer/cs-list/cs-list.module').then( m => m.CsListPageModule)
   }
 ];
 
