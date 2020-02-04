@@ -24,6 +24,7 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { ShOrderInfoPage } from './pages/shopper/sh-order-info/sh-order-info.page';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
     CsOrderCollectPage,
     CsCartModalPage,
     ShProgressChangePage,
-    ShQRPage
+    ShQRPage,
+
   ],
   entryComponents: [
     CsOrderCollectPage,
@@ -60,6 +62,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
     BarcodeScanner,
     Base64ToGallery,
     Camera,
+    ShOrderInfoPage
   ],
   bootstrap: [AppComponent]
 })

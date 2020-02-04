@@ -16,7 +16,7 @@
 
     <ion-row>
 
-    <ion-col size="6.5">
+    <ion-col size="6">
     <!-- <ion-icon [name]=item.custImage slot="start"></ion-icon> -->
  
       <ion-row></ion-row>
@@ -29,11 +29,12 @@
     <ion-row></ion-row>
     </ion-col>
 
-    <ion-col size="2">
+    <ion-col size="5.5">
       <ion-row></ion-row>
       <ion-row>
       <ion-button (click)="returnfield(item)"
-      class="availButton" shape="round" color="warning" size="small"><p class="text-color">{{item.status}}</p></ion-button>
+      class="availButton" expand="block" color="warning" size="small">
+      <p class="text-color">{{item.status}}</p></ion-button>
     </ion-row>
       <ion-row></ion-row>
     </ion-col>  

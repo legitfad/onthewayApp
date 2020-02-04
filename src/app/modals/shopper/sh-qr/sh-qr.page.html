@@ -16,7 +16,6 @@
     <h1>Confirm Delivery</h1>
     <p>Please check customer order, <br> and provide the QR code to your customer.</p>
    
- 
 <ion-card *ngIf="qrData" class="ion-text-center">
   <ngx-qrcode 
   [qrc-element-type]="elementType" [(qrc-value)]="qrData" qrc-class="my-code">
@@ -24,5 +23,7 @@
 </ion-card>
 
   </ion-card>
+
+  <ion-button expand="block" (click)="updateStatus()">Accept Collection</ion-button>
 
 </ion-content>

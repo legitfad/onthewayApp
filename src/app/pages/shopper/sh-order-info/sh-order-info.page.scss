@@ -1,13 +1,50 @@
 .availButton {
-    display: inline-block;
-    vertical-align: middle; 
-    block-size: 35px;
     margin-top: 20px;
     margin-left: auto;
+}
+.spacing {
+    padding: 15px;
 }
 .text-color {
     color: black;
 }
 .heading {
    margin-left: 15px;
+   margin-top: 10px;
+   margin-bottom: 5px;
+}
+.order {
+    color: light grey;
+    margin-top: 0;
+    margin-left: 15px;
+}
+.mainName {
+    font-size: smaller;
+    font-weight: bold;
+}
+
+.otherInfo {
+    font-size: x-small;
+}
+
+.avatar {
+    border-radius:10px;
+    max-width: 50px;
+    display: block;
+    float: left;
+    margin-right: 1rem;
+}
+
+.bookingID {
+    font-weight: lighter;
+    font-size: smaller;
+    padding: 5px;
+}
+
+.statusButton{
+    font-weight: small;
+}
+.notavailButton {
+    margin-top: 30px;
+    margin-left: auto;
 }
