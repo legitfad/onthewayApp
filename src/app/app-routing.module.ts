@@ -32,18 +32,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/shopper/sh-new-orders/sh-new-orders.module').then( m => m.ShNewOrdersPageModule)
   },
   {
-    path: 'cs-shop-list',
-    loadChildren: () => import('./pages/customer/cs-shop-list/cs-shop-list.module').then( m => m.CsShopListPageModule)
-  },
-  {
-    path: 'cs-shop-items',
-    loadChildren: () => import('./pages/customer/cs-shop-items/cs-shop-items.module').then( m => m.CsShopItemsPageModule)
-  },
-  {
-    path: 'cs-cart-modal',
-    loadChildren: () => import('./modals/customer/cs-cart-modal/cs-cart-modal.module').then( m => m.CsCartModalPageModule)
-  },
-  {
     path: 'cs-order-collect',
     loadChildren: () => import('./modals/customer/cs-order-collect/cs-order-collect.module').then( m => m.CsOrderCollectPageModule)
   },
@@ -54,10 +42,6 @@ const routes: Routes = [
   {
     path: 'sh-qr',
     loadChildren: () => import('./modals/shopper/sh-qr/sh-qr.module').then( m => m.ShQRPageModule)
-  },
-  {
-    path: 'cs-item-info',
-    loadChildren: () => import('./pages/customer/cs-item-info/cs-item-info.module').then( m => m.CsItemInfoPageModule)
   },
   {
     path: 'dashboard',

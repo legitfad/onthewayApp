@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { CsHomePageRoutingModule } from './cs-home-routing.module';
 
-import { CsHomePage } from './cs-home.page';
+import { HomePage } from './cs-home.page';
 
 @NgModule({
   imports: [
@@ -15,6 +15,6 @@ import { CsHomePage } from './cs-home.page';
     IonicModule,
     CsHomePageRoutingModule
   ],
-  declarations: [CsHomePage]
+  declarations: [HomePage]
 })
 export class CsHomePageModule {}

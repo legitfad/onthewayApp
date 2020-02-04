@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CartItem } from '../shared/models/cartitem';
-import { CartService } from '../shared/services/cart.service';
-import { FirebaseCartService } from '../shared/services/firebase-cart.service';
+import { FirebaseCartService } from 'src/app/services/firebase-cart.service';
+import { CartItem } from 'src/app/models/cart-item';
 
 @Component({
   selector: 'app-cart',
-  templateUrl: './cart.page.html',
-  styleUrls: ['./cart.page.scss'],
+  templateUrl: './cs-shopping-cart.page.html',
+  styleUrls: ['./cs-shopping-cart.page.scss'],
 })
 export class CartPage implements OnInit {
 

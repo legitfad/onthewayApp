@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { Product } from '../shared/models/product';
 import { ToastController } from '@ionic/angular';
-import { CartService } from '../shared/services/cart.service';
-import { ProductService } from '../shared/services/product.service';
-import { FirebaseCartService } from '../shared/services/firebase-cart.service';
+import { Product } from 'src/app/models/product';
+import { FirebaseCartService } from 'src/app/services/firebase-cart.service';
+import { ProductService } from 'src/app/services/product.service';
+
 
 @Component({
   selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  templateUrl: 'cs-home.page.html',
+  styleUrls: ['cs-home.page.scss'],
 })
 export class HomePage {
 

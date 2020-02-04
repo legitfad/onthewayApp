@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { CsShoppingCartPageRoutingModule } from './cs-shopping-cart-routing.module';
 
-import { CsShoppingCartPage } from './cs-shopping-cart.page';
+import { CartPage } from './cs-shopping-cart.page';
 
 @NgModule({
   imports: [
@@ -15,6 +15,6 @@ import { CsShoppingCartPage } from './cs-shopping-cart.page';
     IonicModule,
     CsShoppingCartPageRoutingModule
   ],
-  declarations: [CsShoppingCartPage]
+  declarations: [CartPage]
 })
 export class CsShoppingCartPageModule {}
