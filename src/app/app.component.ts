@@ -35,6 +35,11 @@ export class AppComponent {
       icon: 'cash'    
     },
     {
+      title: 'CS Activity',
+      url: '/cs-activity',
+      icon: 'cash'    
+    },
+    {
       title: 'Shopping Cart',
       url: '/cs-shopping-cart',
       icon: 'cart'    

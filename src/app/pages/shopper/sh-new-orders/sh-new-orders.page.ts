@@ -83,4 +83,14 @@ export class ShNewOrdersPage implements OnInit {
       order['status'] = 'In progress';
       this.orderService.addShopper(shopper.id,order);
     }
+
+    doRefresh(event) {
+      console.log('Begin async operation');
+  
+      setTimeout(() => {
+        console.log('Async operation has ended');
+        event.target.complete();
+      }, 500);
+    }
+
 }

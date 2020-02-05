@@ -57,6 +57,20 @@ readCompleteOrder(){
     }))
   )
 }
+//for customer view
+readOrderedOrder(){
+  return this.firestore.collection('orderS/', ref => ref.where('status', '==' ,'Available')).snapshotChanges().pipe(
+    map(actions => actions.map(a => {
+      // the database name might need to change here 
+      const custName = a.payload.doc.data()['custName'];
+      const id = a.payload.doc.id;
+      const mallName = a.payload.doc.data()['mallName'];
+      const status = a.payload.doc.data()['status'];
+      
+      return {custName, id, mallName, status};
+    }))
+  )
+}
   getOrderById(id) {
     return this.firestore.doc(`orderS/${id}`).snapshotChanges().pipe(
       take(1),
@@ -86,6 +100,19 @@ readCompleteOrder(){
     )
 
   }
+  readOrderByID(id){
+    return this.firestore.doc(`orderS/${id}`).snapshotChanges().pipe(
+      map(a => {
+        const id = a.payload.id;
+        const custName = a.payload.data()['custName'];
+        const mallName = a.payload.data()['mallName'];
+        const status = a.payload.data()['status'];
+        const userEmail = a.payload.data()['user'];
+
+        return {id,custName, mallName, status, userEmail};
+      })
+    )
+  }
 
   //doesnt work
   deleteOrder(id) {
@@ -110,6 +137,10 @@ readCompleteOrder(){
   }
   getAcceptedOrderItem(orderId) {
     return this.firestore.collection('orderS/' + orderId + '/orderItem/').snapshotChanges();
+  }
+  //for customer view
+  readOrderedOrderItem(id){ 
+    return this.firestore.collection('orderS/' + id + '/orderItem/').snapshotChanges();
   }
   getAcceptedOrderInfo(orderId) {
     return this.firestore.collection('orderS/' + orderId + '/orderItem/', ref => ref.limit(1)).snapshotChanges();

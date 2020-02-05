@@ -15,9 +15,11 @@ export class HomePage {
   allProducts: Product[];
   products: Product[];
 
-  constructor(public toastController: ToastController, 
+  constructor(
+    public toastController: ToastController, 
     private cartService: FirebaseCartService, 
-    private productService: ProductService) {
+    private productService: ProductService 
+  ) {
   }
 
   ngOnInit(){
@@ -25,6 +27,7 @@ export class HomePage {
       result => this.products = this.allProducts = result
     );
   }
+
   async addToCart(item: Product) {   
     const toast = await this.toastController.create({      
       message: item.name + ' added to cart',      
@@ -62,10 +65,16 @@ export class HomePage {
             this.products = this.allProducts;    
       } 
     }
-    refresh(event) {    
-      this.products = this.allProducts;    
-      event.target.complete(); 
-     }
+
+    doRefresh(event) {
+      console.log('Begin async operation');
+      this.products = this.allProducts;
+  
+      setTimeout(() => {
+        console.log('Async operation has ended');
+        event.target.complete();
+      }, 500);
+    }
  
  
 }

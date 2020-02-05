@@ -1,16 +1,22 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>  
+    </ion-buttons>
     <ion-title>
-      <ion-icon routerLink="/list" name="arrow-back"></ion-icon>
         Healthy Mart
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
+
   <ion-searchbar (ionChange)=search($event) color='light'></ion-searchbar>  
-  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">    
-    <ion-refresher-content></ion-refresher-content>  
-  </ion-refresher>
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let item of products">
@@ -25,4 +31,11 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="arrow-dropleft"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
