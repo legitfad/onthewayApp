@@ -9,12 +9,10 @@
 
 <ion-content>
   
-  <ion-refresher slot="fixed" (ionRefresh)="ionRefresh($event)" (ionPull)="ionPull($event)"
-    (ionStart)="ionStart($event)">
-    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
-      refreshingText="Refreshing...">
-    </ion-refresher-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+
   <h1 class="heading">New Orders</h1>
   <ion-searchbar showCancelButton (ionInput)="onInput($event)"></ion-searchbar>
 
