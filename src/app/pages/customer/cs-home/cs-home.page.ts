@@ -31,13 +31,24 @@ export class HomePage {
       duration: 2000,      
       position: 'top',      
       color: 'secondary'    
+    }); 
+    const show = await this.toastController.create({      
+      message: item.name + ' added to order',      
+      duration: 2000,      
+      position: 'top',      
+      color: 'secondary'    
     });   
    this.cartService.add(item).then(() => {
     toast.present();
+    this.cartService.addOrder(item).then(() => {
+      show.present();
+    })
    })
     .catch(error => {
       toast.message='Error:' + error;
       toast.present();
+      show.message='error:' + error;
+      show.present();
     });
    }
 

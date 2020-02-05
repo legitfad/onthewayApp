@@ -34,7 +34,11 @@ export class AppComponent {
       url: '/sh-activity',
       icon: 'cash'    
     },
-
+    {
+      title: 'Shopping Cart',
+      url: '/cs-shopping-cart',
+      icon: 'cart'    
+    }
   ];
 
   constructor(

@@ -16,6 +16,7 @@ export class CartPage implements OnInit {
 
   delete(item: CartItem) {    
     this.cartService.remove(item);
+    this.cartService.removeOrder(item);
   }
 
   checkout(){    
@@ -31,6 +32,5 @@ export class CartPage implements OnInit {
     this.cartService.getCartItems().then
     (result => this.cart = result);
   }
-
 }
 
