@@ -13,6 +13,7 @@ export class ShNewOrdersPage implements OnInit {
   
   allOrder: Array<any>;
   order: Array<any>;
+  status: null;
   
   constructor(
     private orderService: OrderServiceService,

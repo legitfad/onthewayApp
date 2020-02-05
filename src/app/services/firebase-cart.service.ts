@@ -71,7 +71,7 @@ export class FirebaseCartService {
                   const cartsRef = db.collection('order/');
                   cartsRef.add({             
                   custEmail: user.email,              
-                  custstatus: 'Ordered',
+                  custStatus: 'Ordered',
                   mallName: 'Ang Mo Kio Hub',
                   orderStatus: 'Available',
                   custName: name,

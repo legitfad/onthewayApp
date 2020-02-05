@@ -54,7 +54,7 @@ export class OrderServiceService {
   readCompleteOrder(){
     return this.firestore.collection('order/', ref => ref.where('orderStatus', '==', 'Completed')).snapshotChanges().pipe(
       map(actions => actions.map(a => {
-        const status = a.payload.doc.data()['status'];
+        const status = a.payload.doc.data()['orderStatus'];
         const shopperEmail = a.payload.doc.data()['shopperEmail'];
         const mallName = a.payload.doc.data()['mallName'];
         const id = a.payload.doc.id;
@@ -72,7 +72,7 @@ readOrderedOrder(){
       const custName = a.payload.doc.data()['custName'];
       const id = a.payload.doc.id;
       const mallName = a.payload.doc.data()['mallName'];
-      const status = a.payload.doc.data()['status'];
+      const status = a.payload.doc.data()['custStatus'];
       
       return {custName, id, mallName, status};
     }))
@@ -99,7 +99,7 @@ readOrderedOrder(){
         const id = a.payload.id;
         const name = a.payload.data()['custName'];
         const mall = a.payload.data()['mallName'];
-        const status = a.payload.data()['status'];
+        const status = a.payload.data()['orderStatus'];
         const shopperEmail = a.payload.data()['shopperEmail'];
 
         return {id,name,mall,status,shopperEmail};
@@ -113,7 +113,7 @@ readOrderedOrder(){
         const id = a.payload.id;
         const custName = a.payload.data()['custName'];
         const mallName = a.payload.data()['mallName'];
-        const status = a.payload.data()['status'];
+        const status = a.payload.data()['orderStatus'];
         const userEmail = a.payload.data()['user'];
 
         return {id,custName, mallName, status, userEmail};
@@ -135,7 +135,7 @@ readOrderedOrder(){
         const ShopperEmail = a.payload.doc.data()['shopperEmail'];
         const mallName = a.payload.doc.data()['mallName'];
         const id = a.payload.doc.id;
-        const status = a.payload.doc.data()['status'];
+        const status = a.payload.doc.data()['orderStatus'];
         const custName = a.payload.doc.data()['custName'];
 
         return { id, mallName, status, custName, ShopperEmail };
@@ -164,7 +164,7 @@ getAcceptOrder(){
       map(actions => actions.map(a => {
         const mallName = a.payload.doc.data()['mallName'];
         const id = a.payload.doc.id;
-        const status = a.payload.doc.data()['status'];
+        const status = a.payload.doc.data()['orderStatus'];
         const custName = a.payload.doc.data()['custName'];
 
         return { id, mallName, status, custName };
@@ -189,7 +189,7 @@ getAcceptOrder(){
       map(actions => actions.map(a => {
         const mallName = a.payload.doc.data()['mallName'];
         const id = a.payload.doc.id;
-        const status = a.payload.doc.data()['status'];
+        const status = a.payload.doc.data()['orderStatus'];
         const custName = a.payload.doc.data()['custName'];
 
         return { id, mallName, status, custName };
