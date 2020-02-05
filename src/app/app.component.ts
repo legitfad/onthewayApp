@@ -39,7 +39,11 @@ export class AppComponent {
       url: '/cs-activity',
       icon: 'cash'    
     },
-
+    {
+      title: 'Shopping Cart',
+      url: '/cs-shopping-cart',
+      icon: 'cart'    
+    }
   ];
 
   constructor(

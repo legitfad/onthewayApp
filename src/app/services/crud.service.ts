@@ -12,6 +12,8 @@ export class CrudService {
 
    create_NewCart(record) {
     return this.firestore.collection('cart').add(record);
+    // return this.firestore.collection('confirmedOrder').add(record);
   }
+  
 
 }
