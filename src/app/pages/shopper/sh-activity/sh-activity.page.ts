@@ -18,8 +18,10 @@ export class ShActivityPage implements OnInit {
   AcceptOrder: any;
   orderById: any;
 
-  constructor(private orderService: OrderServiceService,
-    private auth: AuthService) {
+  constructor(
+    private orderService: OrderServiceService,
+    private auth: AuthService
+  ) {
     const user = this.auth.getCurrentUser();
     this.orderService.getAcceptedOrder(user.email).subscribe(res => {
       console.log('res: ', res);

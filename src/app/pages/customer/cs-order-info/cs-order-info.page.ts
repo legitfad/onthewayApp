@@ -42,9 +42,9 @@ export class CsOrderInfoPage implements OnInit {
         return {
           //name from database might need to change (database not created yet)
           id: e.payload.doc.id,
-          itemName: e.payload.doc.data()['itemName'],
-          itemPrice: e.payload.doc.data()['itemPrice'],
-          totalPrice: e.payload.doc.data()['totalPrice'],
+          itemName: e.payload.doc.data()['name'],
+          itemPrice: e.payload.doc.data()['price'],
+          quantity: e.payload.doc.data()['quantity'],
           itemImage: e.payload.doc.data()['itemImage']
         };
       })
@@ -52,7 +52,7 @@ export class CsOrderInfoPage implements OnInit {
     })
   }
 
-  async displayModal() {
+  async updateSTATUS() {
     if (this.orderStatus == "Ready for Collection") {
       const modal = await this.modalCtrl.create({
         component: CsOrderCollectPage,
@@ -60,7 +60,7 @@ export class CsOrderInfoPage implements OnInit {
       return await modal.present();
     } 
     else {
-      
+
     }
   }
 

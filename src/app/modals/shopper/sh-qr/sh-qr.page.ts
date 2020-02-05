@@ -32,7 +32,7 @@ export class ShQRPage implements OnInit {
   updateStatus() {
     this.modalCtrl.dismiss();
     this.router.navigate(['/sh-activity']);
-    return this.db.doc(`orderS/${this.passedId}/`).update({
+    return this.db.doc(`order/${this.passedId}/`).update({
       status: "Collected"
     })
   }

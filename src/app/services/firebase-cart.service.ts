@@ -62,7 +62,7 @@ export class FirebaseCartService {
             if (user !== undefined && user.email !== undefined && user.email.trim().length > 0) {        
               const query = db.collection('order/')        
               .where('custEmail', '==', user.email)          
-              .where('custstatus', '==', 'ordered')          
+              .where('custstatus', '==', 'Ordered')          
               .limit(1);
               
               query.get().then(querySnapshot => {                   
@@ -71,10 +71,15 @@ export class FirebaseCartService {
                   const cartsRef = db.collection('order/');
                   cartsRef.add({             
                   custEmail: user.email,              
-                  custstatus: 'ordered',
+                  custstatus: 'Ordered',
                   mallName: 'Ang Mo Kio Hub',
-                  status: 'Available',
-                  custName: name
+                  orderStatus: 'Available',
+                  custName: name,
+                  shopperName: null,
+                  shopperEmail: null,
+                  createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+
+                  
               }).then(docRef =>{
                     console.log('add new order ' + docRef.id + ' for  email ' + user.email);              
                     resolve(docRef.id); 

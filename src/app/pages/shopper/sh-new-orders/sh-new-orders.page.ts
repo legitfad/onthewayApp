@@ -76,12 +76,13 @@ export class ShNewOrdersPage implements OnInit {
 
     addShopper(shopper){
       const user = this.authService.getCurrentUser();
-      let order = {};
-      order['ShopperEmail'] = user.email;
-      order['custName'] = shopper.custName;
-      order['mallName'] = shopper.mallName;
-      order['status'] = 'In progress';
-      this.orderService.addShopper(shopper.id,order);
+
+      // let order = {};
+      // order['ShopperEmail'] = user.email;
+      // order['custName'] = shopper.custName;
+      // order['mallName'] = shopper.mallName;
+      // order['status'] = 'In progress';
+      this.orderService.addShopper(shopper.id);
     }
 
     doRefresh(event) {

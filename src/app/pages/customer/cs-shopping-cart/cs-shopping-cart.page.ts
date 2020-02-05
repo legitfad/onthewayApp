@@ -23,7 +23,7 @@ export class CartPage implements OnInit {
     this.cartService.checkout().then(() => {      
       // Refresh the cart after check out      
       this.cartService.getCartItems().then(        
-        result =>  this.cart = result      
+        result => this.cart = result      
         );    
       });  
   }
