@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
+import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-chats',
@@ -7,9 +11,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatsPage implements OnInit {
 
-  constructor() { }
+  groups: Observable<any>;
+
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private chatSvc: ChatService
+  ) { }
 
   ngOnInit() {
+    this.groups = this.chatSvc.getChatGroups();
+  }
+
+  logout() {
+    this.auth.signOut().then(() => {
+      this.router.navigateByUrl('/login');
+    });
   }
 
 }

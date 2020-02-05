@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrderServiceService } from 'src/app/services/order-services/order-service.service';
 import { UserData } from 'src/app/models/user';
+import { ModalController } from '@ionic/angular';
+import { CsOrderCollectPage } from 'src/app/modals/customer/cs-order-collect/cs-order-collect.page';
 
 @Component({
   selector: 'app-cs-order-info',
@@ -14,15 +16,22 @@ export class CsOrderInfoPage implements OnInit {
   orderById: UserData[] = [];
   orderedOrder: UserData;
   orderItem: any;
+
+  orderStatus: null;
   
-  constructor(private activatedRoute: ActivatedRoute,
-    private orderService: OrderServiceService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private orderService: OrderServiceService,
+    private modalCtrl: ModalController,
+
+  ) { }
 
   ngOnInit() {
     this.orderId = this.activatedRoute.snapshot.params.id;
     this.orderService.readOrderByID(this.orderId).subscribe(res => {
       console.log('Ordered Order:', res);
       const user = new UserData(res.id,res.userEmail,res.custName, res.status, res.mallName);
+      this.orderStatus = res.status;
       this.orderedOrder = user;
       this.orderById.push(this.orderedOrder);
       console.log('orderOrder: ', this.orderById)
@@ -43,6 +52,16 @@ export class CsOrderInfoPage implements OnInit {
     })
   }
 
-  
+  async displayModal() {
+    if (this.orderStatus == "Ready for Collection") {
+      const modal = await this.modalCtrl.create({
+        component: CsOrderCollectPage,
+      })
+      return await modal.present();
+    } 
+    else {
+      
+    }
+  }
 
 }
