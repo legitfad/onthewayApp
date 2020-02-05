@@ -57,8 +57,9 @@ readCompleteOrder(){
     }))
   )
 }
+//for customer view
 readOrderedOrder(){
-  return this.firestore.collection('order/', ref => ref.where('status', '==' ,'ordered')).snapshotChanges().pipe(
+  return this.firestore.collection('orderS/', ref => ref.where('status', '==' ,'Available')).snapshotChanges().pipe(
     map(actions => actions.map(a => {
       // the database name might need to change here 
       const custName = a.payload.doc.data()['custName'];
@@ -100,7 +101,7 @@ readOrderedOrder(){
 
   }
   readOrderByID(id){
-    return this.firestore.doc(`order/${id}`).snapshotChanges().pipe(
+    return this.firestore.doc(`orderS/${id}`).snapshotChanges().pipe(
       map(a => {
         const id = a.payload.id;
         const custName = a.payload.data()['custName'];
@@ -137,8 +138,9 @@ readOrderedOrder(){
   getAcceptedOrderItem(orderId) {
     return this.firestore.collection('orderS/' + orderId + '/orderItem/').snapshotChanges();
   }
-  readOrderedOrderItem(id){
-    return this.firestore.collection('order/' + id + '/item/').snapshotChanges();
+  //for customer view
+  readOrderedOrderItem(id){ 
+    return this.firestore.collection('orderS/' + id + '/orderItem/').snapshotChanges();
   }
   getAcceptedOrderInfo(orderId) {
     return this.firestore.collection('orderS/' + orderId + '/orderItem/', ref => ref.limit(1)).snapshotChanges();

@@ -19,7 +19,7 @@
     <h1 class="heading">{{item.custName}}</h1>
         </ion-col>
         <ion-col size="4">
-    <ion-button class="availButton" expand="block" size="small" color="warning" shape="round" [routerLink] = "['/test']" (click)="updateSTATUS(item)">
+    <ion-button class="availButton" expand="block" size="small" color="warning" shape="round" [routerLink] = "['/cs-activity']" (click)="updateSTATUS(item)">
       <p class="text-color">{{item.status}}</p>
       </ion-button>
     </ion-col>
@@ -34,27 +34,26 @@
 
   <ion-card>
       <ion-list>
-      <ion-item>
+      <ion-item *ngFor = "let item of orderItem">
       <ion-thumbnail slot="start">
-        <ion-img [src]="item.ItemImage"></ion-img>
+        <ion-img [src]="item.itemImage"></ion-img>
       </ion-thumbnail>
       <ion-label>
         <div class = 'itemDetails'>
     <h2>
     {{item.StoreName}}
     </h2>
-    <p class="itemLeft">{{item.ItemName}} x{{item.Quantity}}</p>
-    <p class="priceRight">{{item.ItemPrice | currency}}</p>
+    <p class="itemLeft">{{item.itemName}} x{{item.Quantity}}</p>
+    <p class="priceRight">{{item.itemPrice | currency}}</p>
     </div>
       </ion-label>
     </ion-item>
-    <ion-item-options>
+    <!-- <ion-item-options>
     <ion-button full expandable (click)="updateItem(item)">
       Not Available
       <ion-icon name="trash"></ion-icon>
     </ion-button>
-    </ion-item-options>
-    </ion-item-sliding>
+    </ion-item-options> -->
       </ion-list>
     </ion-card>
   <!-- <ion-button horizontal ="end" fill="outline" color="success" size="small">Ready</ion-button> -->
