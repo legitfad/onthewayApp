@@ -9,7 +9,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CsOrderCollectPage } from './modals/customer/cs-order-collect/cs-order-collect.page';
-import { CsCartModalPage } from './modals/customer/cs-cart-modal/cs-cart-modal.page';
 import { ShProgressChangePage } from './modals/shopper/sh-progress-change/sh-progress-change.page';
 import { ShQRPage } from './modals/shopper/sh-qr/sh-qr.page';
 import { AngularFireModule } from '@angular/fire';
@@ -30,14 +29,12 @@ import { ShOrderInfoPage } from './pages/shopper/sh-order-info/sh-order-info.pag
   declarations: [
     AppComponent,
     CsOrderCollectPage,
-    CsCartModalPage,
     ShProgressChangePage,
     ShQRPage,
 
   ],
   entryComponents: [
     CsOrderCollectPage,
-    CsCartModalPage,
     ShProgressChangePage,
     ShQRPage
   ],

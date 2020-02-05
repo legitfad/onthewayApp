@@ -32,18 +32,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/shopper/sh-new-orders/sh-new-orders.module').then( m => m.ShNewOrdersPageModule)
   },
   {
-    path: 'cs-shop-list',
-    loadChildren: () => import('./pages/customer/cs-shop-list/cs-shop-list.module').then( m => m.CsShopListPageModule)
-  },
-  {
-    path: 'cs-shop-items',
-    loadChildren: () => import('./pages/customer/cs-shop-items/cs-shop-items.module').then( m => m.CsShopItemsPageModule)
-  },
-  {
-    path: 'cs-cart-modal',
-    loadChildren: () => import('./modals/customer/cs-cart-modal/cs-cart-modal.module').then( m => m.CsCartModalPageModule)
-  },
-  {
     path: 'cs-order-collect',
     loadChildren: () => import('./modals/customer/cs-order-collect/cs-order-collect.module').then( m => m.CsOrderCollectPageModule)
   },
@@ -56,12 +44,28 @@ const routes: Routes = [
     loadChildren: () => import('./modals/shopper/sh-qr/sh-qr.module').then( m => m.ShQRPageModule)
   },
   {
-    path: 'cs-item-info',
-    loadChildren: () => import('./pages/customer/cs-item-info/cs-item-info.module').then( m => m.CsItemInfoPageModule)
-  },
-  {
     path: 'dashboard',
     loadChildren: () => import('./pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'cs-shopping-cart',
+    loadChildren: () => import('./pages/customer/cs-shopping-cart/cs-shopping-cart.module').then( m => m.CsShoppingCartPageModule)
+  },
+  {
+    path: 'cs-home',
+    loadChildren: () => import('./pages/customer/cs-home/cs-home.module').then( m => m.CsHomePageModule)
+  },
+  {
+    path: 'cs-list',
+    loadChildren: () => import('./pages/customer/cs-list/cs-list.module').then( m => m.CsListPageModule)
+  },
+  {
+    path: 'cs-activity',
+    loadChildren: () => import('./pages/customer/cs-activity/cs-activity.module').then( m => m.CsActivityPageModule)
+  },
+  {
+    path: 'cs-order-info/:id',
+    loadChildren: () => import('./pages/customer/cs-order-info/cs-order-info.module').then( m => m.CsOrderInfoPageModule)
   }
 ];
 
