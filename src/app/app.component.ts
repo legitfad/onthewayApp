@@ -34,6 +34,11 @@ export class AppComponent {
       url: '/sh-activity',
       icon: 'cash'    
     },
+    {
+      title: 'CS Activity',
+      url: '/cs-activity',
+      icon: 'cash'    
+    },
 
   ];
 

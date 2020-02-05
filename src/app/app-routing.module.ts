@@ -66,6 +66,14 @@ const routes: Routes = [
   {
     path: 'cs-order-info/:id',
     loadChildren: () => import('./pages/customer/cs-order-info/cs-order-info.module').then( m => m.CsOrderInfoPageModule)
+  },
+  {
+    path: 'chat',
+    loadChildren: () => import('./pages/chat/chat.module').then( m => m.ChatPageModule)
+  },
+  {
+    path: 'chats',
+    loadChildren: () => import('./pages/admin/chats/chats.module').then( m => m.ChatsPageModule)
   }
 ];
 
