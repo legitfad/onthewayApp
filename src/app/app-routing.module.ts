@@ -58,6 +58,14 @@ const routes: Routes = [
   {
     path: 'cs-list',
     loadChildren: () => import('./pages/customer/cs-list/cs-list.module').then( m => m.CsListPageModule)
+  },
+  {
+    path: 'cs-activity',
+    loadChildren: () => import('./pages/customer/cs-activity/cs-activity.module').then( m => m.CsActivityPageModule)
+  },
+  {
+    path: 'cs-order-info/:id',
+    loadChildren: () => import('./pages/customer/cs-order-info/cs-order-info.module').then( m => m.CsOrderInfoPageModule)
   }
 ];
 
