@@ -111,10 +111,10 @@ export class FirebaseCartService {
          cartRef.get().then(itemsSnapshot => {          
            const cart: CartItem[] = []; // Empty cart
           itemsSnapshot.forEach(doc => {            
-            const p = new Product(doc.data().name, doc.data().price, '');            
+            const p = new Product(doc.data().name, doc.data().price, doc.data().image);            
             p.id = doc.id;            
             const c = new CartItem(p, doc.data().quantity);
-            cart.push(c); // Add to cart          
+            cart.push(c); // Add to cart           
           });          
           resolve(cart); // Return cart as result of promise
                 });      
@@ -163,7 +163,8 @@ export class FirebaseCartService {
                         itemRef.set({              
                           quantity: 1,              
                           name: product.name,              
-                          price: product.price            
+                          price: product.price,
+                          image: product.image           
                         });          }          
                         resolve(); // Promise fulfilled        
                       });      
@@ -190,7 +191,8 @@ export class FirebaseCartService {
                         itemRef.set({              
                           quantity: 1,              
                           name: product.name,              
-                          price: product.price            
+                          price: product.price,
+                          image: product.image            
                         });          
                       }          
                         resolve(); // Promise fulfilled        

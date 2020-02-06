@@ -14,9 +14,9 @@
     <ion-item-sliding *ngFor ="let item of cart" (ionSwipe)="delete(item)">
 
       <ion-item>
-        <!-- <ion-thumbnail slot="start">
+        <ion-thumbnail slot="start">
           <img [src]= item.product.image>
-        </ion-thumbnail> -->
+        </ion-thumbnail>
         <ion-label>
           <h2>{{item.product.name}} x {{item.quantity}}</h2>
           <p>{{item.product.price | currency}}</p>
