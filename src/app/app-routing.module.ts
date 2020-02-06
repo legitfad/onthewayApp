@@ -74,6 +74,18 @@ const routes: Routes = [
   {
     path: 'chats',
     loadChildren: () => import('./pages/admin/chats/chats.module').then( m => m.ChatsPageModule)
+  },
+  {
+    path: 'sh-reviews',
+    loadChildren: () => import('./pages/shopper/sh-reviews/sh-reviews.module').then( m => m.ShReviewsPageModule)
+  },
+  {
+    path: 'cs-review',
+    loadChildren: () => import('./pages/customer/cs-review/cs-review.module').then( m => m.CsReviewPageModule)
+  },
+  {
+    path: 'map',
+    loadChildren: () => import('./map/map.module').then( m => m.MapPageModule)
   }
 ];
 

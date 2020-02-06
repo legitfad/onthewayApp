@@ -24,6 +24,7 @@ import { FirebaseX } from '@ionic-native/firebase-x/ngx';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ShOrderInfoPage } from './pages/shopper/sh-order-info/sh-order-info.page';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { ShOrderInfoPage } from './pages/shopper/sh-order-info/sh-order-info.pag
     BarcodeScanner,
     Base64ToGallery,
     Camera,
-    ShOrderInfoPage
+    ShOrderInfoPage,
+    Geolocation
   ],
   bootstrap: [AppComponent]
 })

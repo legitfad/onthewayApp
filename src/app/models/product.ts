@@ -5,12 +5,14 @@ export class Product {
     image: string;
     category: string;    
     id: string;
- 
- 
-    constructor(name: string, 
+
+    constructor(
+        name: string, 
         price: number, 
-        image: string,category?: 
-        string, vegeterian?: boolean, id?:string){        
+        image: string,
+        category?: string, 
+        id?:string
+        ){        
             this.name = name;        
             this.price = price;        
             this.image = image;    
@@ -37,5 +39,29 @@ export class Product {
                     }        
                 }    
             } 
-        }
-    
+}
+
+export class ProductReview {
+
+    comment: string;
+    image: string;    
+    imageFile: File;
+    rating: string;
+    custEmail:string;
+    id: string;
+
+    constructor(
+        comment: string, 
+        image: string,
+        rating?: string,
+        custEmail?:string, 
+        id?: string
+    ) {
+        this.comment = comment;
+        this.image = image;
+        this.rating = rating;
+        this.id = id;
+        this.custEmail=custEmail;
+
+     }
+}

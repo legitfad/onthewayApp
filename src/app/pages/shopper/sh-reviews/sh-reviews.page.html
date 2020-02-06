@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>View Reviews</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+
+    <ion-item *ngFor="let item of products">
+      <ion-thumbnail slot="start">
+
+        <ion-img [src]=item.image></ion-img>
+
+      </ion-thumbnail>
+      <ion-label>
+
+        <h2> {{item.comments}} </h2>
+        <p> {{item.rating}} </p>
+        <p> {{item.picture}} </p>
+
+     </ion-label>
+
+    </ion-item>
+
+  </ion-list>
+
+ 
+</ion-content>
