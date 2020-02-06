@@ -65,7 +65,7 @@ export class OrderServiceService {
   }
 //for customer view
 readOrderedOrder(){
-  return this.firestore.collection('order/', ref => ref.where('custName', '==' , this.AuthService.currentUser.name)).snapshotChanges().pipe(
+  return this.firestore.collection('order/', ref => ref.where('custName', '==' ,'Available')).snapshotChanges().pipe(
     map(actions => actions.map(a => {
       // the database name might need to change here 
       const custName = a.payload.doc.data()['custName'];
