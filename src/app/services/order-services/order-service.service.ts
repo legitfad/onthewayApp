@@ -41,7 +41,6 @@ export class OrderServiceService {
       shopperEmail: this.AuthService.currentUser.email,
       orderStatus: 'In Progress',
       custStatus: 'In Progress',
-
     })
   }
   updateStatus(orderId,status){
@@ -92,6 +91,7 @@ readOrderedOrder(){
        return{ id:Oid ,...(data as {})};
       }))
   }
+
   getOrderByID(id){
     return this.firestore.doc(`order/${id}`).snapshotChanges().pipe(
       take(1),
@@ -101,22 +101,32 @@ readOrderedOrder(){
         const mall = a.payload.data()['mallName'];
         const status = a.payload.data()['orderStatus'];
         const shopperEmail = a.payload.data()['shopperEmail'];
+        const shopperName = a.payload.data()['shopperName'];
+        const shopperChat = a.payload.data()['shopperChatID'];
+        const adminChat = a.payload.data()['adminChatID'];
+        const custEmail = a.payload.data()['custEmail'];
+        const custID = a.payload.data()['custID'];
 
-        return {id,name,mall,status,shopperEmail};
+        return {id,name,mall,status,shopperEmail,shopperName,shopperChat,adminChat,custEmail,custID};
       })
     )
-
   }
+
   readOrderByID(id){
     return this.firestore.doc(`order/${id}`).snapshotChanges().pipe(
       map(a => {
         const id = a.payload.id;
-        const custName = a.payload.data()['custName'];
-        const mallName = a.payload.data()['mallName'];
+        const name = a.payload.data()['custName'];
+        const mall = a.payload.data()['mallName'];
         const status = a.payload.data()['orderStatus'];
-        const userEmail = a.payload.data()['user'];
+        const shopperEmail = a.payload.data()['shopperEmail'];
+        const shopperName = a.payload.data()['shopperName'];
+        const shopperChat = a.payload.data()['shopperChatID'];
+        const adminChat = a.payload.data()['adminChatID'];
+        const custEmail = a.payload.data()['custEmail'];
+        const custID = a.payload.data()['custID'];
 
-        return {id,custName, mallName, status, userEmail};
+        return {id,name,mall,status,shopperEmail,shopperName,shopperChat,adminChat,custEmail,custID};
       })
     )
   }

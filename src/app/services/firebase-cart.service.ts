@@ -62,24 +62,26 @@ export class FirebaseCartService {
             if (user !== undefined && user.email !== undefined && user.email.trim().length > 0) {        
               const query = db.collection('order/')        
               .where('custEmail', '==', user.email)          
-              .where('custstatus', '==', 'Ordered')          
+              .where('custStatus', '==', 'Ordered')          
               .limit(1);
               
               query.get().then(querySnapshot => {                   
                 if (querySnapshot.empty) {            
-                  // No cart exists, create a new cart            
+                  // No cart exists, create a new cartss
                   const cartsRef = db.collection('order/');
                   cartsRef.add({             
                   custEmail: user.email,              
                   custStatus: 'Ordered',
+                  custID: this.authService.currentUserId,
                   mallName: 'Ang Mo Kio Hub',
                   orderStatus: 'Available',
                   custName: name,
                   shopperName: null,
                   shopperEmail: null,
+                  adminChatID: null,
+                  shopperChatID: null,
                   createdAt: firebase.firestore.FieldValue.serverTimestamp(),
 
-                  
               }).then(docRef =>{
                     console.log('add new order ' + docRef.id + ' for  email ' + user.email);              
                     resolve(docRef.id); 
@@ -238,7 +240,7 @@ export class FirebaseCartService {
       // Update cart status to 'ordered' in DB
       const cartRef = db.collection('carts/').doc(cartId);
       cartRef.update({
-        status: 'ordered'
+        status: 'Ordered'
       });
       resolve();
     });         

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { orderItemTry } from 'src/app/models/test-order-item';
 import { orderTry } from 'src/app/models/test-order';
 import { orderDetails } from 'src/app/models/order-details';
-import { Observable } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
 import { UserData } from 'src/app/models/user';
 import { OrdersService } from 'src/app/services/order-services/orders.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,6 +12,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ShProgressChangePage } from 'src/app/modals/shopper/sh-progress-change/sh-progress-change.page';
 import { ModalController } from '@ionic/angular';
 import { ShQRPage } from 'src/app/modals/shopper/sh-qr/sh-qr.page';
+import { ChatService } from 'src/app/services/chat.service';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-sh-order-info',
@@ -32,29 +34,61 @@ export class ShOrderInfoPage implements OnInit {
   orderById: UserData[] = [];
   AcceptOrder: UserData;
 
-  public status: null;
-  public dataId: string;
+  status: null;
+  dataId: string;
 
-  constructor(private orderService: OrdersService,
+  custName: null;
+  shopName: null;
+  custEmail: null;
+  custID: null;
+  ADusers = [];
+  SHusers = [];
+  adminTitle = '';
+  shopTitle = '';
+  participant = '';
+  groups: Observable<any>;
+
+  constructor(
+    private orderService: OrdersService,
     private activatedRoute: ActivatedRoute,
     private orderItemService: FirebaseOrderService,
     private orderServiceService: OrderServiceService,
     private authService: AuthService,
     private modalCtrl: ModalController,
+    private chatSvc: ChatService,
+    private db: AngularFirestore,
 
   ) {
    
   }
+
   ngOnInit() {
     this.orderId = this.activatedRoute.snapshot.params.id;
     this.orderServiceService.getOrderByID(this.orderId).subscribe(res => {
       console.log('AcceptOrder: ', res)
-      const user = new UserData(res.id, res.shopperEmail, res.name, res.status, res.mall);
+      const user = new UserData(res.id, res.shopperEmail, res.shopperName, res.name, 
+        res.status, res.mall, res.shopperChat, res.adminChat, res.custEmail, res.custID,
+        );
       this.dataId = res.id;
       this.AcceptOrder = user;
       this.status = res.status; 
       this.orderById.push(this.AcceptOrder);
       console.log('orderBYid: ', this.orderById)
+
+
+
+      this.custEmail = res.custEmail;
+      this.custName = res.name;
+      this.shopName = res.shopperName;
+      this.custID = res.custID;
+
+      console.log('admin ' + res.adminChat);
+      console.log('shopper ' + res.shopperChat);
+
+
+      if (res.shopperChat == null) {
+
+      }
     });
 
     this.orderServiceService.getAcceptedOrderItem(this.orderId).subscribe(data => {
@@ -71,61 +105,10 @@ export class ShOrderInfoPage implements OnInit {
       console.log("orderItem: " + this.orderItem);
     })
 
-    // this.activatedRoute.params.subscribe(data => {
-    //   this.orderServiceService.getOrderByID(data.id).subscribe(res => {
-    //     console.log('res: ', res);
-    //     this.AcceptOrder = res
-    //     console.log('AcceptOrder: ', this.AcceptOrder)
-    //     this.orderById = this.AcceptOrder;
-    //     console.log('OrderById: ', this.orderById);
-    // })
-    // })
-    // this.orderServiceService.getOrderById(this.orderId).subscribe(data => {
-    //   this.orderDetail = data.map(e => {
-    //     return {
-    //       id: e.payload.doc.id,
-    //       CustName: e.payload.doc.data()['custName'],
-    //       MallName: e.payload.doc.data()['mallName'],
-    //       Status:e.payload.doc.data()['status']
-    //     };
-    //   })
-    //   console.log(this.orderDetail);
-    // })
-
-    //this.orderService.getOrderDetailsById(this.orderId).then(
-    //result => this.orderDetails = result
-    // );
-    // this.orderItemService.getAllOrderItem().then(
-    //   result => this.orderItems = result
-    // );
-    // this.orderItemService.getAllOrderActivity().then(
-    //   result => this.order = result
-    // );
-
-    // this.orderServiceService.getAcceptOrder().subscribe(data => {
-    //   this.AcceptOrder = data.map(e => {
-    //     return{
-    //     id: e.payload.doc.id,
-    //     CustName: e.payload.doc.data()['custName'],
-    //     MallName: e.payload.doc.data()['mallName'],
-    //     DropOff: e.payload.doc.data()['dropOff'],
-    //     Status: e.payload.doc.data()['status']
-    //     };
-    //   })
-    //   console.log(this.order);
-    // });
-    // this.orderServiceService.getAcceptedOrderInfo(this.orderId).subscribe(data => {
-    //   this.orderDetail = data.map(e => {
-    //     return {
-    //       CustName: e.payload.doc.data()['custName'],
-    //       MallName: e.payload.doc.data()['mallName'],
-    //       Status: e.payload.doc.data()['status']
-    //     };
-    //   })
-    //   console.log("orderDetail: " + this.orderDetail);
-    // })
+   
 
   }
+
   doRefresh(event) {
     console.log('Begin async operation');
     console.log("DataID: " + this.dataId);
@@ -134,7 +117,6 @@ export class ShOrderInfoPage implements OnInit {
       event.target.complete();
     }, 500);
   }
-
 
   deleteorderitem(id) {
     this.orderServiceService.deleteOrderItem(this.orderId, id);
@@ -187,4 +169,31 @@ export class ShOrderInfoPage implements OnInit {
       // this.orderServiceService.updateStatus(status.id,order);
     
   }
+
+  riderChat() {
+    this.shopTitle = "Rider: " + this.shopName + " + Cust:  " + this.custName;
+    
+    let obs = this.chatSvc.findPerson(this.custName);
+    forkJoin(obs).subscribe(res => {
+      console.log('Res: ', res);
+      for(let users of res) {
+        if (users.length > 0) {
+          console.log("Users: ", users)
+          this.SHusers.push(users[0]);
+        }
+      }
+      this.createShopGroup();
+    })
+    
+  }
+
+  createShopGroup() {
+    this.chatSvc.createGroupChat(this.shopTitle, this.SHusers)
+      .then(res => {
+        console.log(res)
+      })
+  }
+
+
+
 } 

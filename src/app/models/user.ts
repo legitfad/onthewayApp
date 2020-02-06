@@ -14,9 +14,15 @@ export class UserData {
     constructor(
         public id: string,
         public ShopperEmail: string,
+        public ShopperName: string,
         public custName: string,
         public status: string,
-        public mallName: string) {
+        public mallName: string,
+        public shopperChat: string,
+        public adminChat: string,
+        public custEmail: string,
+        public custID: string,
+    ) {
 
     }
 }

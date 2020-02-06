@@ -4,6 +4,8 @@ import { OrderServiceService } from 'src/app/services/order-services/order-servi
 import { UserData } from 'src/app/models/user';
 import { ModalController } from '@ionic/angular';
 import { CsOrderCollectPage } from 'src/app/modals/customer/cs-order-collect/cs-order-collect.page';
+import { ChatService } from 'src/app/services/chat.service';
+import { Observable, forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-cs-order-info',
@@ -18,11 +20,18 @@ export class CsOrderInfoPage implements OnInit {
   orderItem: any;
 
   orderStatus: null;
+
+  groups: Observable<any>;
+
+  users = [];
+  title = '';
+  participant = '';
   
   constructor(
     private activatedRoute: ActivatedRoute,
     private orderService: OrderServiceService,
     private modalCtrl: ModalController,
+    private chatSvc: ChatService,
 
   ) { }
 
@@ -30,11 +39,19 @@ export class CsOrderInfoPage implements OnInit {
     this.orderId = this.activatedRoute.snapshot.params.id;
     this.orderService.readOrderByID(this.orderId).subscribe(res => {
       console.log('Ordered Order:', res);
-      const user = new UserData(res.id,res.userEmail,res.custName, res.status, res.mallName);
+      const user = new UserData(res.id, res.shopperEmail, res.shopperName, res.name, 
+        res.status, res.mall, res.shopperChat, res.adminChat, res.custEmail, res.custID,
+        );
       this.orderStatus = res.status;
       this.orderedOrder = user;
       this.orderById.push(this.orderedOrder);
       console.log('orderOrder: ', this.orderById)
+
+
+      if (res.adminChat == null) {
+        this.adminChat()
+      }
+
     })
 
     this.orderService.readOrderedOrderItem(this.orderId).subscribe(data => {
@@ -62,6 +79,28 @@ export class CsOrderInfoPage implements OnInit {
     else {
 
     }
+  }
+
+  adminChat() {
+    this.title = "Admin Chat"
+    let obs = this.chatSvc.findPerson('OTW_Admin');
+    forkJoin(obs).subscribe(res => {
+      console.log('Res: ', res);
+      for(let users of res) {
+        if (users.length > 0) {
+          console.log("Users: ", users)
+          this.users.push(users[0]);
+        }
+      }
+      this.createGroup();
+    })
+  }
+
+  createGroup() {
+    this.chatSvc.createGroupChat(this.title, this.users)
+      .then(res => {
+        console.log(res)
+      })
   }
 
 }

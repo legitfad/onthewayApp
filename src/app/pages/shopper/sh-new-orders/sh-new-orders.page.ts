@@ -3,6 +3,9 @@ import { OrderServiceService } from 'src/app/services/order-services/order-servi
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { ChatService } from 'src/app/services/chat.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-sh-new-orders',
@@ -17,9 +20,8 @@ export class ShNewOrdersPage implements OnInit {
   
   constructor(
     private orderService: OrderServiceService,
-    private router: Router, 
     private authService: AuthService,
-    private auth: AngularFireAuth
+
   ) {
     const user = this.authService.getCurrentUser();
     this.orderService.getOrderr().subscribe(res => {
@@ -76,8 +78,7 @@ export class ShNewOrdersPage implements OnInit {
     // }
 
     addShopper(shopper){
-      const user = this.authService.getCurrentUser();
-
+      // const user = this.authService.getCurrentUser();
       // let order = {};
       // order['ShopperEmail'] = user.email;
       // order['custName'] = shopper.custName;
@@ -85,6 +86,7 @@ export class ShNewOrdersPage implements OnInit {
       // order['status'] = 'In progress';
       this.orderService.addShopper(shopper.id);
     }
+
 
     doRefresh(event) {
       console.log('Begin async operation');
