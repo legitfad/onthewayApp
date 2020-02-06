@@ -4,16 +4,18 @@ import 'firebase/firestore';
 import { AuthService } from './auth.service';
 import { Product } from '../models/product';
 import { CartItem } from '../models/cart-item';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseCartService {
 
-  constructor(private authService: AuthService) 
-  { 
-    
-  } 
+  constructor(
+    private authService: AuthService,
+    private route: Router,
+  ) { } 
+
   getCartId(){
     const promise = new Promise<string>((resolve, reject) => {      
       const db = firebase.firestore();
@@ -50,6 +52,7 @@ export class FirebaseCartService {
                 });
                 return promise;
   }
+
   getOrderId(){
     const promise = new Promise<string>((resolve, reject) => {      
       const db = firebase.firestore();
@@ -74,7 +77,7 @@ export class FirebaseCartService {
                   custStatus: 'Ordered',
                   custID: this.authService.currentUserId,
                   mallName: 'Ang Mo Kio Hub',
-                  orderStatus: 'Available',
+                  orderStatus: null,
                   custName: name,
                   shopperName: null,
                   shopperEmail: null,
@@ -140,7 +143,7 @@ export class FirebaseCartService {
                         }).catch(error => { });    
                       });   
                        return promise;  
-                      }
+            }
             
   add(product:Product){
     const promise = new Promise<void>((resolve, reject) => {      
@@ -214,6 +217,7 @@ export class FirebaseCartService {
     }).catch(error => { });   
    });
   }
+
   removeOrder(item:CartItem){
     const promise = new Promise<void>((resolve, reject) => {      
       this.getOrderId().then(cartId => {        
@@ -233,10 +237,10 @@ export class FirebaseCartService {
   }
 
   checkout(){
+    this.availOrder();
     const promise = new Promise<void>((resolve, reject) => {
       this.getCartId().then(cartId => {
         const db = firebase.firestore();
-        
       // Update cart status to 'ordered' in DB
       const cartRef = db.collection('carts/').doc(cartId);
       cartRef.update({
@@ -244,7 +248,22 @@ export class FirebaseCartService {
       });
       resolve();
     });         
-  });    
-  return promise;  
-}
+    });    
+    return promise;  
+  }
+
+  availOrder() {
+    const promise = new Promise<void>(() => {
+      this.getOrderId().then(orderId => {
+        this.route.navigateByUrl('/cs-order-info/' + orderId)
+        return firebase.firestore().collection('order/').doc(orderId).update({
+          orderStatus: 'Available'
+        })
+ 
+      })
+    })
+    return promise;
+  }
+
+
 }

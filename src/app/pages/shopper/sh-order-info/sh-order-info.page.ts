@@ -75,20 +75,15 @@ export class ShOrderInfoPage implements OnInit {
       this.orderById.push(this.AcceptOrder);
       console.log('orderBYid: ', this.orderById)
 
-
-
-      this.custEmail = res.custEmail;
       this.custName = res.name;
-      this.shopName = res.shopperName;
-      this.custID = res.custID;
-
-      console.log('admin ' + res.adminChat);
-      console.log('shopper ' + res.shopperChat);
-
+      console.log("Customer: " + this.custName)
+      this.shopName = res.mall
+      console.log("Mall: " + res.mall)
 
       if (res.shopperChat == null) {
-
+        this.shopperChat()
       }
+
     });
 
     this.orderServiceService.getAcceptedOrderItem(this.orderId).subscribe(data => {
@@ -105,7 +100,8 @@ export class ShOrderInfoPage implements OnInit {
       console.log("orderItem: " + this.orderItem);
     })
 
-   
+    this.groups = this.chatSvc.getChatGroups();
+    console.log(this.groups);
 
   }
 
@@ -170,8 +166,8 @@ export class ShOrderInfoPage implements OnInit {
     
   }
 
-  riderChat() {
-    this.shopTitle = "Rider: " + this.shopName + " + Cust:  " + this.custName;
+  shopperChat() {
+    this.shopTitle = "Order: " + this.orderId;
     
     let obs = this.chatSvc.findPerson(this.custName);
     forkJoin(obs).subscribe(res => {
@@ -182,13 +178,13 @@ export class ShOrderInfoPage implements OnInit {
           this.SHusers.push(users[0]);
         }
       }
-      this.createShopGroup();
+      this.createChat();
     })
     
   }
 
-  createShopGroup() {
-    this.chatSvc.createGroupChat(this.shopTitle, this.SHusers)
+  createChat() {
+    this.chatSvc.createShopperChat(this.shopTitle, this.SHusers, this.orderId)
       .then(res => {
         console.log(res)
       })

@@ -37,7 +37,7 @@ export class ChatService {
     return [email, username];
   }
    
-  createGroupChat(title, users) {
+  createShopperChat(title, users, order) {
     let current = {
       email: this.auth.currentUser.email,
       id: this.auth.currentUserId,
@@ -50,7 +50,37 @@ export class ChatService {
       users: allUsers
     }).then(res => {
       let promises = [];
- 
+      console.log("CHAT ID: " + res.id)
+      this.db.collection('order').doc(order).update({
+        shopperChatID: res.id
+      })
+      for (let usr of allUsers) {
+        let oneAdd = this.db.collection(`users/${usr.id}/groups`).add({
+          id: res.id
+        });
+        promises.push(oneAdd);
+      }
+      return Promise.all(promises);
+    })  
+  }
+
+  createAdminChat(title, users, order) {
+    let current = {
+      email: this.auth.currentUser.email,
+      id: this.auth.currentUserId,
+      username: this.auth.username
+    };
+    
+    let allUsers = [current, ...users];
+    return this.db.collection('groups').add({
+      title: title,
+      users: allUsers
+    }).then(res => {
+      let promises = [];
+      console.log("CHAT ID: " + res.id)
+      this.db.collection('order').doc(order).update({
+        adminChatID: res.id
+      })
       for (let usr of allUsers) {
         let oneAdd = this.db.collection(`users/${usr.id}/groups`).add({
           id: res.id

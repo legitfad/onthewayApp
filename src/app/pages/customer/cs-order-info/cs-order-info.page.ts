@@ -6,6 +6,8 @@ import { ModalController } from '@ionic/angular';
 import { CsOrderCollectPage } from 'src/app/modals/customer/cs-order-collect/cs-order-collect.page';
 import { ChatService } from 'src/app/services/chat.service';
 import { Observable, forkJoin } from 'rxjs';
+import * as firebase from 'firebase/app'; 
+import 'firebase/firestore';
 
 @Component({
   selector: 'app-cs-order-info',
@@ -26,7 +28,9 @@ export class CsOrderInfoPage implements OnInit {
   users = [];
   title = '';
   participant = '';
-  
+  chatID: any;
+  chat: any;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private orderService: OrderServiceService,
@@ -67,6 +71,10 @@ export class CsOrderInfoPage implements OnInit {
       })
       console.log('Customer OrderItem: ' + this.orderItem);
     })
+
+    this.groups = this.chatSvc.getChatGroups();
+    console.log(this.groups);
+
   }
 
   async updateSTATUS() {
@@ -97,10 +105,17 @@ export class CsOrderInfoPage implements OnInit {
   }
 
   createGroup() {
-    this.chatSvc.createGroupChat(this.title, this.users)
+    this.chatSvc.createAdminChat(this.title, this.users, this.orderId)
       .then(res => {
         console.log(res)
       })
+    
   }
+
+  // updateAdmin() {
+  //   return firebase.firestore().collection('order/').doc(this.orderId).update({
+  //     adminChatID: 
+  //   })
+  // }
 
 }

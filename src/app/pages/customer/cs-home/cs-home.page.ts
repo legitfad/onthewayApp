@@ -44,14 +44,14 @@ export class HomePage {
    this.cartService.add(item).then(() => {
     toast.present();
     this.cartService.addOrder(item).then(() => {
-      show.present();
+      // show.present();
     })
    })
     .catch(error => {
       toast.message='Error:' + error;
       toast.present();
       show.message='error:' + error;
-      show.present();
+      // show.present();
     });
    }
 
