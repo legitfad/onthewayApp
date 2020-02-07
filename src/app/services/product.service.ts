@@ -9,20 +9,20 @@ export class ProductService {
   allProducts: Product[] = [];
   constructor() {
     this.allProducts = [ 
-      new Product('Nescafe Instant Soluble Coffee Jar - Classic', 8.4, 'assets/nescafeclassic.jpg','Beverage', true, '1'),      
-      new Product('Dilmah Infusion Pure Tea Bags - Camomile Flower', 5.5, 'assets/dilmahcamomiletea.jpg','Beverage',true,'2'),      
-      new Product('Natural Organic Brown Rice Ring - Original', 2.3, 'assets/organicbrownricerings.jpg','Snack',true, '3'),    
-      new Product('Want Want Rice Crackers - Shelly Senbei', 3.8, 'assets/wantwantoriginalricecrackers.jpg','Snack', true, '4'),
-      new Product('Sunny Fruit Organic Dried Fruit - Apricots', 6.4, 'assets/organicapricot.jpg','Snack',true,'5'), 
-      new Product('Carmans Gourmet Protein Bars - Dark Choc, Coconut and Macadamia', 7.5, 'assets/nutbar.jpg','Snack',true,'6'),
-      new Product('Aveeno Moisturising Lotion - Daily', 17.4, 'assets/aveenolotion.jpg','Household',true,'7'),
-      new Product('Cetaphil Gentle Skin Cleanser', 10.9, 'assets/cetaphilcleanser.jpg','Household',true,'8'),
-      new Product('Glade Scented Gel - Ocean Escape', 3.2, 'assets/airfreshner.jpg','Household',true,'9'),    
-      new Product('Dettol Anti-Bacterial Personal Wet Wipes', 5.8, 'assets/dettolwipes.jpg','Household',true,'10'),  
-      new Product('Philip FeatherLike Plus Stream Iron', 68.9, 'assets/iron.jpg','Household',true,'11'), 
-      new Product('Philips Viva Collection - Airfryer', 125.2, 'assets/airfryer.jpg','Household',true,'12')  
+      new Product('Nescafe Instant Soluble Coffee Jar - Classic', 8.4, 'assets/nescafeclassic.jpg','Beverage', '1'),      
+      new Product('Dilmah Infusion Pure Tea Bags - Camomile Flower', 5.5, 'assets/dilmahcamomiletea.jpg','Beverage', '2'),      
+      new Product('Natural Organic Brown Rice Ring - Original', 2.3, 'assets/organicbrownricerings.jpg','Snack', '3'),    
+      new Product('Want Want Rice Crackers - Shelly Senbei', 3.8, 'assets/wantwantoriginalricecrackers.jpg','Snack', '4'),
+      new Product('Sunny Fruit Organic Dried Fruit - Apricots', 6.4, 'assets/organicapricot.jpg','Snack', '5'), 
+      new Product('Carmans Gourmet Protein Bars - Dark Choc, Coconut and Macadamia', 7.5, 'assets/nutbar.jpg','Snack', '6'),
+      new Product('Aveeno Moisturising Lotion - Daily', 17.4, 'assets/aveenolotion.jpg','Household', '7'),
+      new Product('Cetaphil Gentle Skin Cleanser', 10.9, 'assets/cetaphilcleanser.jpg','Household', '8'),
+      new Product('Glade Scented Gel - Ocean Escape', 3.2, 'assets/airfreshner.jpg','Household', '9'),    
+      new Product('Dettol Anti-Bacterial Personal Wet Wipes', 5.8, 'assets/dettolwipes.jpg','Household','10'),  
+      new Product('Philip FeatherLike Plus Stream Iron', 68.9, 'assets/iron.jpg','Household', '11'), 
+      new Product('Philips Viva Collection - Airfryer', 125.2, 'assets/airfryer.jpg','Household', '12')  
   ];
-   }
+  }  
 
    getAllProducts(){
     const promise = new Promise<Product[]>((resolve, reject) => {      
