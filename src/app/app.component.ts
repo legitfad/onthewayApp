@@ -43,6 +43,11 @@ export class AppComponent {
       title: 'Shopping Cart',
       url: '/cs-shopping-cart',
       icon: 'cart'    
+    },
+    {
+      title: 'Payment',
+      url: '/cs-payment',
+      icon: 'card'    
     }
   ];
 
