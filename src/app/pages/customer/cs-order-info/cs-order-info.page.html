@@ -89,9 +89,9 @@
   </ion-col>
 
   <ion-col class="ion-align-items-center" size="8"> 
-    <div>
+    <div *ngIf = "shopperChatID != null">
     <ion-button class="ion-text-wrap" expand="block" 
-    fill="outline" shape="round" (click)="toAdminChat()" >
+    fill="outline" shape="round" (click)="toShopperChat()" >
       <ion-label class="ion-text-wrap">
         <ion-text>
           <h3>Talk to your Shopper</h3>

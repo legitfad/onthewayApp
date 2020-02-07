@@ -80,13 +80,14 @@ export class CsOrderInfoPage implements OnInit {
       console.log('Customer OrderItem: ' + this.orderItem);
     })
 
-    this.groups = this.chatSvc.getChatGroups();
-    console.log(this.groups);
-
   }
 
   toAdminChat() {
-    this.router.navigateByUrl('/chat/' + this.adminChatID)
+    this.router.navigateByUrl('/chat/' + this.adminChatID);
+  }
+
+  toShopperChat() {
+    this.router.navigateByUrl('/chat/' + this.shopperChatID);
   }
 
   async updateSTATUS() {
@@ -102,7 +103,8 @@ export class CsOrderInfoPage implements OnInit {
   }
 
   adminChat() {
-    this.title = "Admin Chat"
+    this.title = "OTW Order: " + this.orderId;
+
     let obs = this.chatSvc.findPerson('OTW_Admin');
     forkJoin(obs).subscribe(res => {
       console.log('Res: ', res);
