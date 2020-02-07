@@ -38,5 +38,8 @@ export class CrudService {
     this.firestore.doc('Students/' + record_id).delete();
   }
   
+  readProductItem(id){
+    return this.firestore.collection('order/' + id + '/items/').snapshotChanges();
+  }
 
 }

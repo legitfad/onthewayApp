@@ -239,7 +239,8 @@ export class FirebaseCartService {
   }
 
   checkout(){
-    this.availOrder();
+    // this.availOrder();
+    this.updateOrderStatus();
     const promise = new Promise<void>((resolve, reject) => {
       this.getCartId().then(cartId => {
         const db = firebase.firestore();
@@ -253,15 +254,26 @@ export class FirebaseCartService {
     });    
     return promise;  
   }
+updateOrderStatus(){
+  const promise = new Promise<void>(() => {
+    this.getOrderId().then(orderId => {
+      //this.route.navigateByUrl('/cs-order-info/' + orderId)
+      this.route.navigateByUrl('/cs-payment/' + orderId)
+      return firebase.firestore().collection('order/').doc(orderId).update({
+        orderStatus: 'Available'
+      })
+
+    })
+  })
+  return promise;
+}
+
 
   availOrder() {
     const promise = new Promise<void>(() => {
-      this.getOrderId().then(orderId => {
-        this.route.navigateByUrl('/cs-order-info/' + orderId)
-        return firebase.firestore().collection('order/').doc(orderId).update({
-          orderStatus: 'Available'
-        })
- 
+      this.getCartId().then(cartId => {
+        //this.route.navigateByUrl('/cs-order-info/' + orderId)
+        this.route.navigateByUrl('/cs-payment/' + cartId)
       })
     })
     return promise;

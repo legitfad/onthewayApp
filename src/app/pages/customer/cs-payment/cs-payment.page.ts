@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudService } from 'src/app/services/crud.service';
+import { OrderServiceService } from 'src/app/services/order-services/order-service.service';
+import { ActivatedRoute } from '@angular/router';
+import { FirebaseCartService } from 'src/app/services/firebase-cart.service';
+import { CartItem } from 'src/app/models/cart-item';
 
 @Component({
   selector: 'app-cs-payment',
@@ -16,10 +20,18 @@ export class CsPaymentPage implements OnInit {
   cvv: number;
   address: string;
   postalcode: number;
+  cartId: string;
+  cartItem: any;
+  cart: CartItem[];
 
-  constructor(private crudService: CrudService) { }
+  constructor(private crudService: CrudService,
+    private activatedRoute: ActivatedRoute,
+    private cartService: FirebaseCartService) { }
 
   ngOnInit() {
+    this.cartService.getCartItems().then
+    (result => this.cart = result);
+  
   }
   CreatePayment() {
     let record = {};
@@ -43,6 +55,10 @@ export class CsPaymentPage implements OnInit {
       .catch(error => {
         console.log(error);
       });
-  }
-
+  
+    }
+  
+  
 }
+  
+
