@@ -92,7 +92,7 @@
     <div *ngFor="let group of groups | async; let i=index">
       <ion-button *ngIf="(group | async)?.title" 
       class="ion-text-wrap" expand="block" fill="outline" shape="round"
-        [routerLink]="['/', 'chat', (group | async)?.id || 0]" >
+        [routerLink]="['/', 'chat', {{shopperChat}} ]" >
         <ion-label class="ion-text-wrap">
           <ion-text>
             <h3>Talk to your Shopper</h3>
@@ -114,7 +114,7 @@
     <div *ngFor="let group of groups | async; let i=index">
     <ion-button *ngIf="(group | async)?.title" 
     class="ion-text-wrap" expand="block" fill="outline" shape="round"
-      [routerLink]="['/', 'chat', (group | async)?.id || 0]" >
+      [routerLink]="['/', 'chat', {{adminChatID}} ]" >
       <ion-label class="ion-text-wrap">
         <ion-text>
           <h3>OTW Customer Support</h3>
