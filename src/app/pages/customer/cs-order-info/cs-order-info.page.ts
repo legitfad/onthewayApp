@@ -28,8 +28,9 @@ export class CsOrderInfoPage implements OnInit {
   users = [];
   title = '';
   participant = '';
-  chatID: any;
-  chat: any;
+ 
+  adminChatID: null;
+  shopperChatID: null;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -56,6 +57,12 @@ export class CsOrderInfoPage implements OnInit {
         this.adminChat()
       }
 
+      this.adminChatID = res.adminChat;
+      this.shopperChatID = res.shopperChat;
+
+      console.log("admin chat: " + this.adminChatID)
+      console.log("shopper chat: " + this.shopperChatID)
+      
     })
 
     this.orderService.readOrderedOrderItem(this.orderId).subscribe(data => {

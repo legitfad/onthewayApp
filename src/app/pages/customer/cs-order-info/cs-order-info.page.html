@@ -90,9 +90,9 @@
 
   <ion-col class="ion-align-items-center" size="8">
     <div *ngFor="let group of groups | async; let i=index">
-      <ion-button *ngIf="(group | async)?.title == 'Rider Chat' && i<1" 
+      <ion-button *ngIf="(group | async)?.title" 
       class="ion-text-wrap" expand="block" fill="outline" shape="round"
-        [routerLink]="['/', 'test-chat', (group | async)?.id || 0]" >
+        [routerLink]="['/', 'chat', (group | async)?.id || 0]" >
         <ion-label class="ion-text-wrap">
           <ion-text>
             <h3>Talk to your Shopper</h3>
@@ -112,9 +112,9 @@
 
   <ion-col class="ion-align-items-center" size="8"> 
     <div *ngFor="let group of groups | async; let i=index">
-    <ion-button *ngIf="(group | async)?.title == 'Admin Chat' && i<1" 
+    <ion-button *ngIf="(group | async)?.title" 
     class="ion-text-wrap" expand="block" fill="outline" shape="round"
-      [routerLink]="['/', 'test-chat', (group | async)?.id || 0]" >
+      [routerLink]="['/', 'chat', (group | async)?.id || 0]" >
       <ion-label class="ion-text-wrap">
         <ion-text>
           <h3>OTW Customer Support</h3>
@@ -128,8 +128,6 @@
   </ion-col>
 </ion-row>
 
-
-    
 
 </ion-content>
     

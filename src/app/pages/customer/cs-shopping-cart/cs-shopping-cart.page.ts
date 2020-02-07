@@ -35,11 +35,10 @@ export class CartPage implements OnInit {
   
   }
 
-
-
   ngOnInit() {
     this.cartService.getCartItems().then
     (result => this.cart = result);
   }
+
 }
 
