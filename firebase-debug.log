@@ -1,0 +1,28 @@
+[debug] [2020-02-07T09:53:25.267Z] ----------------------------------------------------------------------
+[debug] [2020-02-07T09:53:25.269Z] Command:       /usr/local/bin/node /usr/local/bin/firebase init
+[debug] [2020-02-07T09:53:25.269Z] CLI Version:   7.12.1
+[debug] [2020-02-07T09:53:25.269Z] Platform:      darwin
+[debug] [2020-02-07T09:53:25.269Z] Node Version:  v12.13.0
+[debug] [2020-02-07T09:53:25.270Z] Time:          Fri Feb 07 2020 17:53:25 GMT+0800 (Singapore Standard Time)
+[debug] [2020-02-07T09:53:25.270Z] ----------------------------------------------------------------------
+[debug] [2020-02-07T09:53:25.270Z] 
+[debug] [2020-02-07T09:53:25.275Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-02-07T09:53:25.275Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/fadzilakmal/Desktop/onthewayApp
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 

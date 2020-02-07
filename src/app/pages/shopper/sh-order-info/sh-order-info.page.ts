@@ -43,10 +43,10 @@ export class ShOrderInfoPage implements OnInit {
   custID: null;
   ADusers = [];
   SHusers = [];
-  adminTitle = '';
   shopTitle = '';
   participant = '';
-  groups: Observable<any>;
+
+  custChatID: null;
 
   constructor(
     private orderService: OrdersService,
@@ -57,6 +57,7 @@ export class ShOrderInfoPage implements OnInit {
     private modalCtrl: ModalController,
     private chatSvc: ChatService,
     private db: AngularFirestore,
+    private router: Router,
 
   ) {
    
@@ -84,15 +85,17 @@ export class ShOrderInfoPage implements OnInit {
         this.shopperChat()
       }
 
+      this.custChatID = res.shopperChat
+      
+
     });
 
     this.orderServiceService.getAcceptedOrderItem(this.orderId).subscribe(data => {
       this.orderItem = data.map(e => {
         return {
           id: e.payload.doc.id,
-          ItemName: e.payload.doc.data()['itemName'],
-          ItemPrice: e.payload.doc.data()['itemPrice'],
-          StoreName: e.payload.doc.data()['storeName'],
+          ItemName: e.payload.doc.data()['name'],
+          ItemPrice: e.payload.doc.data()['price'],
           Quantity: e.payload.doc.data()['quantity'],
           ItemImage: e.payload.doc.data()['itemImage']
         };
@@ -100,9 +103,11 @@ export class ShOrderInfoPage implements OnInit {
       console.log("orderItem: " + this.orderItem);
     })
 
-    this.groups = this.chatSvc.getChatGroups();
-    console.log(this.groups);
 
+  }
+
+  toShopperChat() {
+    this.router.navigateByUrl('/chat/' + this.custChatID)
   }
 
   doRefresh(event) {

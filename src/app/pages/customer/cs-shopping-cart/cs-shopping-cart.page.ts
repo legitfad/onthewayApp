@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FirebaseCartService } from 'src/app/services/firebase-cart.service';
 import { CartItem } from 'src/app/models/cart-item';
 import { Router } from '@angular/router';
+import { ChatService } from 'src/app/services/chat.service';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
@@ -14,8 +16,14 @@ export class CartPage implements OnInit {
   order: any;
   orderID: '';
 
+  users = [];
+  title = '';
+  participant = '';
+
   constructor(
-    private cartService: FirebaseCartService
+    private cartService: FirebaseCartService,
+    private chatSvc: ChatService,
+
 
   ) { }
 
@@ -32,13 +40,13 @@ export class CartPage implements OnInit {
         result => this.cart = result,      
         );    
       }); 
-  
   }
 
   ngOnInit() {
     this.cartService.getCartItems().then
     (result => this.cart = result);
   }
+
 
 }
 

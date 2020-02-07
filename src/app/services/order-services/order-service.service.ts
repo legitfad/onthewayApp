@@ -29,7 +29,7 @@ export class OrderServiceService {
   // when i use doc instead of collection there will be error in the accept-order.page.ts (map part)
   // then if  use collection they say need to have odd number segements
   get_OrderById(oId) {
-    return this.firestore.doc('order/' + oId).get();
+    return this.firestore.collection('order').doc(oId);
   }
 
   update_OrderItem(orderId, id,status) {

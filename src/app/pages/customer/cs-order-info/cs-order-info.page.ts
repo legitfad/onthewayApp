@@ -44,6 +44,9 @@ export class CsOrderInfoPage implements OnInit {
   ngOnInit() {
     this.orderId = this.activatedRoute.snapshot.params.id;
     this.orderService.readOrderByID(this.orderId).subscribe(res => {
+      if(res.adminChat == null) {
+        this.adminChat()
+      }
       console.log('Ordered Order:', res);
       const user = new UserData(res.id, res.shopperEmail, res.shopperName, res.name, 
         res.status, res.mall, res.shopperChat, res.adminChat, res.custEmail, res.custID,
@@ -53,18 +56,13 @@ export class CsOrderInfoPage implements OnInit {
       this.orderById.push(this.orderedOrder);
       console.log('orderOrder: ', this.orderById)
 
-
-      if (res.adminChat == null) {
-        this.adminChat()
-      }
-
       this.adminChatID = res.adminChat;
       this.shopperChatID = res.shopperChat;
 
       console.log("admin chat: " + this.adminChatID)
       console.log("shopper chat: " + this.shopperChatID)
 
-    })
+    });
 
     this.orderService.readOrderedOrderItem(this.orderId).subscribe(data => {
       this.orderItem = data.map(e => {
@@ -79,6 +77,7 @@ export class CsOrderInfoPage implements OnInit {
       })
       console.log('Customer OrderItem: ' + this.orderItem);
     })
+
 
   }
 
@@ -125,11 +124,5 @@ export class CsOrderInfoPage implements OnInit {
       })
     
   }
-
-  // updateAdmin() {
-  //   return firebase.firestore().collection('order/').doc(this.orderId).update({
-  //     adminChatID: 
-  //   })
-  // }
 
 }

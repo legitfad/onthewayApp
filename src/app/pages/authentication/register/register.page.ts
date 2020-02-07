@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class RegisterPage implements OnInit {
 
   registerForm: FormGroup;
+
+  result: any;
   
   constructor(
     private fb: FormBuilder, 
@@ -25,7 +27,8 @@ export class RegisterPage implements OnInit {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      username: ['', Validators.required]
+      username: ['', Validators.required],
+      role: ['', Validators.required]
     });
   }
 
@@ -40,12 +43,13 @@ export class RegisterPage implements OnInit {
         alert.then(alert => alert.present());
       } else {
         this.auth.signUp(this.registerForm.value).then(async (res) => {
+        
           let toast = await this.toastCtrl.create({
             duration: 3000,
             message: 'Successfully created new Account!'
           });
           toast.present();
-          this.router.navigateByUrl('/dashboard');
+          this.navigateByRole(this.registerForm.value['role']);
         }, async (err) => {
           let alert = await this.alertCtrl.create({
             header: 'Error',
@@ -56,6 +60,14 @@ export class RegisterPage implements OnInit {
         })
       }
     })
+  }
+
+  navigateByRole(role) {
+    if (role == 'CUSTOMER') {
+      this.router.navigateByUrl('/cs-list');
+    } else if (role == 'SHOPPER') {
+      this.router.navigateByUrl('/sh-new-orders');
+    }
   }
 
 }

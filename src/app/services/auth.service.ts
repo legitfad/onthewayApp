@@ -4,12 +4,14 @@ import { User } from 'firebase';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import 'firebase/firestore';
-import { take, map, tap } from 'rxjs/operators';
+import { take, map, tap, switchMap } from 'rxjs/operators';
+import { from, of } from 'rxjs';
 
 export interface UserCredentials {
   username: string;
   email: string;
   password: string;
+  role: string;
 }
 
 @Injectable({
@@ -50,7 +52,8 @@ export class AuthService {
         return this.db.doc(`users/${data.user.uid}`).set({
           username: credentials.username,
           email: data.user.email,
-          created: firebase.firestore.FieldValue.serverTimestamp()
+          created: firebase.firestore.FieldValue.serverTimestamp(),
+          role: credentials.role
         });
       });
   }
@@ -65,7 +68,16 @@ export class AuthService {
   }
 
   signIn(credentials: UserCredentials) {
-    return this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
+    return from(this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password)).pipe(
+      switchMap(user => {
+        console.log('real user: ', user);
+        if (user) {
+          return this.db.doc(`users/${user.user.uid}`).valueChanges();
+        } else {
+          return of(null);
+        }
+      })
+    )
   }
  
   signOut() {

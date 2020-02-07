@@ -35,6 +35,14 @@
         <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
       </ion-row>
 
+      <ion-row class="rowStyle">
+        <ion-label>Select Role</ion-label>
+        <ion-select formControlName="role">
+            <ion-select-option value="CUSTOMER">Customer</ion-select-option>
+            <ion-select-option value="SHOPPER">Shopper</ion-select-option>
+        </ion-select>
+      </ion-row>
+
       <ion-button class="button" color="primary" expand="block" type="submit" [disabled]="!registerForm.valid">Register</ion-button>
  
     </ion-grid>

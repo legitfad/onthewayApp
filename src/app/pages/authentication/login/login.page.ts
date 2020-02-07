@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { AlertController, ToastController } from '@ionic/angular';
+import { AlertController, ToastController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -19,7 +19,8 @@ export class LoginPage implements OnInit {
     private auth: AuthService, 
     private alertCtrl: AlertController, 
     private toastCtrl: ToastController, 
-    private router: Router
+    private router: Router,
+    private loadingCtrl: LoadingController,
     
   ) {  }
 
@@ -30,9 +31,10 @@ export class LoginPage implements OnInit {
     });
   }
 
-  login() {
-    this.auth.signIn(this.loginForm.value).then((res) => {
-      this.router.navigateByUrl('/dashboard');
+ login() {
+    this.auth.signIn(this.loginForm.value).subscribe(user => {
+      console.log('after login: ', user);
+      this.navigateByRole(user['role']);
     }, async (err) => {
       let alert = await this.alertCtrl.create({
         header: 'Error',
@@ -66,6 +68,16 @@ export class LoginPage implements OnInit {
       ]
     });
     inputAlert.present();
+  }
+
+  navigateByRole(role) {
+    if (role == 'CUSTOMER') {
+      this.router.navigateByUrl('/cs-list');
+    } else if (role == 'SHOPPER') {
+      this.router.navigateByUrl('/sh-new-orders');
+    } else if (role == 'ADMIN') {
+      this.router.navigateByUrl('/dashboard');
+    }
   }
 
   resetPw(email) {
