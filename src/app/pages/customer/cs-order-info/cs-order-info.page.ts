@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrderServiceService } from 'src/app/services/order-services/order-service.service';
 import { UserData } from 'src/app/models/user';
 import { ModalController } from '@ionic/angular';
@@ -37,6 +37,7 @@ export class CsOrderInfoPage implements OnInit {
     private orderService: OrderServiceService,
     private modalCtrl: ModalController,
     private chatSvc: ChatService,
+    private router: Router,
 
   ) { }
 
@@ -62,7 +63,7 @@ export class CsOrderInfoPage implements OnInit {
 
       console.log("admin chat: " + this.adminChatID)
       console.log("shopper chat: " + this.shopperChatID)
-      
+
     })
 
     this.orderService.readOrderedOrderItem(this.orderId).subscribe(data => {
@@ -82,6 +83,10 @@ export class CsOrderInfoPage implements OnInit {
     this.groups = this.chatSvc.getChatGroups();
     console.log(this.groups);
 
+  }
+
+  toAdminChat() {
+    this.router.navigateByUrl('/chat/' + this.adminChatID)
   }
 
   async updateSTATUS() {
