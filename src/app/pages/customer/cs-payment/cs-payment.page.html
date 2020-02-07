@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>payment</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<h3> Content of the Shopping card</h3>
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <!--action="/action_page.php"-->
+        
+      <ion-card>
+        <ion-card-content class="ion-no-padding">
+          <ion-item *ngFor = "let item of cart">
+            <ion-thumbnail slot="start">
+              <img [src]= item.product.image>
+            </ion-thumbnail>
+            <ion-label>
+              <h2 class="otherInfo ion-float-left">{{item.product.name}} x {{item.quantity}}</h2>
+              <p class="otherInfo ion-float-right">{{item.product.price | currency}}</p>
+            </ion-label>
+          </ion-item>
+          </ion-card-content>
+          </ion-card>
+        <!-- <div class="col-25">
+          <div class="container">
+            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b></span></h4>
+            <p><a href="#">Product 1</a> <span class="price">$15</span></p>
+            <p><a href="#">Product 2</a> <span class="price">$5</span></p>
+            <p><a href="#">Product 3</a> <span class="price">$8</span></p>
+            <p><a href="#">Product 4</a> <span class="price">$2</span></p>
+            <hr>
+            <p>Total <span class="price" style="color:black"><b>$30</b></span></p>
+          </div>
+        </div> -->
+
+        <div class="row">
+          <div class="col-50">
+            <h3>Billing Address</h3>
+            <label for="fname"><i><ion-icon name="person"></ion-icon></i> Full Name</label>
+            <input type="text"  [(ngModel)]="fullname" placeholder="John M. Doe">
+            <label for="adr"><i><ion-icon name="at"></ion-icon></i> Address</label>
+            <input type="text" [(ngModel)]="address" placeholder="542 W. 15th Street">
+
+           
+          <div class="row">
+              <div class="col-50">
+                <label for="postalcode"><i><ion-icon name="pin"></ion-icon></i>Postal Code</label>
+                <input type="text" [(ngModel)]="postalcode" placeholder="100001">
+              </div>
+            </div>
+           </div>
+
+          <div class="col-50">
+            <h3>Payment</h3>
+            <label for="fname">Accepted Cards</label>
+            <div class="icon-container">
+               <p><ion-icon name="md-card"></ion-icon> &nbsp;Visa</p>
+               <p><ion-icon name="ios-card"></ion-icon>&nbsp; Mastercard</p>
+            </div>
+            <label for="ccnum">Credit card number</label>
+            <input type="number" [(ngModel)]="cardNo" placeholder="1111-2222-3333-4444" maxlength="16">
+            <label for="expmonth">Exp Month</label>
+            <input type="text" [(ngModel)]="expmonth" placeholder="September">
+            <div class="row">
+              <div class="col-50">
+                <label for="expyear">Exp Year</label>
+                <input type="number"  [(ngModel)]="expyear" placeholder="2018" maxlength="4">
+              </div>
+              <div class="col-50">
+                <label for="cvv">CVV</label>
+                <input type="number" [(ngModel)]="cvv" placeholder="352" maxlength="3">
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <div id="message">
+          <h3>Card Number should have:</h3>
+          <p id="length" class="invalid">Maximum <b>16 digits</b></p>
+        </div>
+      
+        <ion-button [routerLink]="['/payment-m']" (click)="CreatePayment()" expand="block" type="submit" >Checkout</ion-button>
+     
+    </div>
+  </div>
+  
+</div>
+
+
+
+</ion-content>

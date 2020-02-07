@@ -44,7 +44,7 @@ export class HomePage {
    this.cartService.add(item).then(() => {
     toast.present();
     this.cartService.addOrder(item).then(() => {
-      // show.present();
+    //show.present();
     })
    })
     .catch(error => {

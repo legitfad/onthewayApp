@@ -15,7 +15,7 @@ export class CartPage implements OnInit {
   orderID: '';
 
   constructor(
-    private cartService: FirebaseCartService,
+    private cartService: FirebaseCartService
 
   ) { }
 

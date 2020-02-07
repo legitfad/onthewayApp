@@ -86,6 +86,14 @@ const routes: Routes = [
   {
     path: 'map',
     loadChildren: () => import('./map/map.module').then( m => m.MapPageModule)
+  },
+  {
+    path: 'cs-payment/:id',
+    loadChildren: () => import('./pages/customer/cs-payment/cs-payment.module').then( m => m.CsPaymentPageModule)
+  },
+  {
+    path: 'cs-profile',
+    loadChildren: () => import('./pages/customer/cs-profile/cs-profile.module').then( m => m.CsProfilePageModule)
   }
 ];
 
