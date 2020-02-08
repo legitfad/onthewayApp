@@ -259,8 +259,8 @@ export class FirebaseCartService {
   const promise = new Promise<void>(() => {
     this.getOrderId().then(orderId => {
       // 
-      this.route.navigateByUrl('/cs-activity')
-      // this.route.navigateByUrl('/cs-payment/' + orderId)
+      // this.route.navigateByUrl('/cs-activity')
+      this.route.navigateByUrl('/cs-payment/' + orderId)
       return firebase.firestore().collection('order/').doc(orderId).update({
         orderStatus: 'Available'
       })

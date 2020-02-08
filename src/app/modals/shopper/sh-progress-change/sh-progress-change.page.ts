@@ -33,7 +33,8 @@ export class ShProgressChangePage implements OnInit {
     this.modalCtrl.dismiss();
     this.router.navigate(['/sh-activity']);
     return this.db.doc(`order/${this.passedId}/`).update({
-      status: "Ready for Collection"
+      orderStatus: "Ready for Collection",
+      custStatus: "Ready for Collection"
     })
   }
 
