@@ -72,7 +72,7 @@ export class CsOrderInfoPage implements OnInit {
           itemName: e.payload.doc.data()['name'],
           itemPrice: e.payload.doc.data()['price'],
           quantity: e.payload.doc.data()['quantity'],
-          itemImage: e.payload.doc.data()['itemImage']
+          itemImage: e.payload.doc.data()['image']
         };
       })
       console.log('Customer OrderItem: ' + this.orderItem);

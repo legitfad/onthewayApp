@@ -97,7 +97,7 @@ export class ShOrderInfoPage implements OnInit {
           ItemName: e.payload.doc.data()['name'],
           ItemPrice: e.payload.doc.data()['price'],
           Quantity: e.payload.doc.data()['quantity'],
-          ItemImage: e.payload.doc.data()['itemImage']
+          ItemImage: e.payload.doc.data()['image']
         };
       })
       console.log("orderItem: " + this.orderItem);
