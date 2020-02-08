@@ -15,7 +15,6 @@
   </ion-refresher>
 
   <!-- customer/order info -->
-
   <p class="bookingID">Booking ID : {{ orderId }}</p>
 
   <ion-card *ngFor="let item of orderById">
@@ -28,13 +27,13 @@
         <img class="avatar" src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">  
         </ion-col>
 
-        <ion-col size="4" class="ion-align-items-center">
+        <ion-col size="3.5" class="ion-align-items-center">
         <h1 class = "mainName">{{item.custName}}</h1>
         <p class = "otherInfo">{{item.mallName}}</p>
         </ion-col>
 
-        <ion-col class="ion-align-items-center" size="1.5"> 
-        <ion-button size="small" color="warning" class="statusButton" (click)="updateSTATUS()">
+        <ion-col class="ion-align-items-center" size="5.5"> 
+        <ion-button size="small" color="warning" expand="block" class="statusButton" (click)="updateSTATUS()">
         <p class="text-color">{{item.status}}</p>
         </ion-button>
         </ion-col>
