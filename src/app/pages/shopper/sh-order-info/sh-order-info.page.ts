@@ -127,10 +127,9 @@ export class ShOrderInfoPage implements OnInit {
   updateItem(status) {
     let OrderStatus = {};
     OrderStatus['note'] = 'Item not available';
-    OrderStatus['itemName'] = status.ItemName;
-    OrderStatus['itemPrice'] = status.ItemPrice;
-    OrderStatus['itemImage'] = status.ItemImage;
-    OrderStatus['storeName'] = status.StoreName;
+    OrderStatus['name'] = status.ItemName;
+    OrderStatus['price'] = status.ItemPrice;
+    OrderStatus['image'] = status.ItemImage;
     OrderStatus['quantity'] = status.Quantity;
     this.orderServiceService.update_OrderItem(this.orderId,status.id, OrderStatus);
     console.log('ITEM UPDATED!!!!!');
