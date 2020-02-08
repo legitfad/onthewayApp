@@ -26,24 +26,20 @@ h2 {
 
     ion-icon {
         margin: 10px;
+        color: #005ba3;
     }   
 }
 
-.icon {
-    color: #005ba3;
-}
+// .icon {
+//     color: #005ba3;
+// }
 
 .button {
     --border-radius: 15px 50px;
     font-size: 1em;
 }
 
-ion-input {
-    background: #dde9ff;
-    border-radius: 10px;
-    margin-top: 6px;
-    --padding-start: 6px !important;
-  }
+
   
   
   /* entire container, keeps perspective */

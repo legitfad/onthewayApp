@@ -8,6 +8,7 @@ import { ChatService } from 'src/app/services/chat.service';
 import { Observable, forkJoin } from 'rxjs';
 import * as firebase from 'firebase/app'; 
 import 'firebase/firestore';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-cs-order-info',
@@ -38,7 +39,8 @@ export class CsOrderInfoPage implements OnInit {
     private modalCtrl: ModalController,
     private chatSvc: ChatService,
     private router: Router,
-
+    private auth: AuthService,
+    
   ) { }
 
   ngOnInit() {
@@ -79,6 +81,12 @@ export class CsOrderInfoPage implements OnInit {
     })
 
 
+  }
+
+  logout() {
+    this.auth.signOut().then(() => {
+      this.router.navigateByUrl('/login');
+    });
   }
 
   toAdminChat() {

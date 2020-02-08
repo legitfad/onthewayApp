@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+  </ion-buttons>
     <ion-title>payment</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -82,7 +85,7 @@
           <p id="length" class="invalid">Maximum <b>16 digits</b></p>
         </div>
       
-        <ion-button [routerLink]="['/payment-m']" (click)="CreatePayment()" expand="block" type="submit" >Checkout</ion-button>
+        <ion-button (click)="CreatePayment()" expand="block" type="submit" >Checkout</ion-button>
      
     </div>
   </div>

@@ -3,6 +3,7 @@ import { orderTry } from 'src/app/models/test-order';
 import { FirebaseOrderService } from 'src/app/services/order-services/firebase-order.service';
 import { OrderServiceService } from 'src/app/services/order-services/order-service.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sh-activity',
@@ -20,12 +21,20 @@ export class ShActivityPage implements OnInit {
 
   constructor(
     private orderService: OrderServiceService,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router,
+    
   ) {
     const user = this.auth.getCurrentUser();
     this.orderService.getAcceptedOrder(user.email).subscribe(res => {
       console.log('res: ', res);
       this.acceptedOrders = res;
+    });
+  }
+
+  logout() {
+    this.auth.signOut().then(() => {
+      this.router.navigateByUrl('/login');
     });
   }
 
