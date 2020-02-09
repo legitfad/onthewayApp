@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 import { CartService } from 'src/app/services/cart.service';
 import { Router } from '@angular/router';
-import Stripe from 'stripe';
+// import Stripe from 'stripe';
 import { environment } from 'src/environments/environment';
   
 @Component({
