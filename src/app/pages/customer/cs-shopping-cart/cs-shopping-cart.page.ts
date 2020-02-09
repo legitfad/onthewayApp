@@ -40,6 +40,9 @@ export class CartPage implements OnInit {
         );    
       }); 
   }
+  getTotal() {
+    return this.cart.reduce((i, j) => i + j.product.price * j.quantity, 0);
+  }
 
   ngOnInit() {
     this.cartService.getCartItems().then
