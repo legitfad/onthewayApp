@@ -119,8 +119,9 @@ readOrderedOrder(){
         const adminChat = a.payload.data()['adminChatID'];
         const custEmail = a.payload.data()['custEmail'];
         const custID = a.payload.data()['custID'];
+        const totalPrice = a.payload.data()['totalPrice'];
 
-        return {id,name,mall,status,shopperEmail,shopperName,shopperChat,adminChat,custEmail,custID};
+        return {id,name,mall,status,shopperEmail,shopperName,shopperChat,adminChat,custEmail,custID,totalPrice};
       })
     )
   }
@@ -139,8 +140,9 @@ readOrderedOrder(){
         const adminChat = a.payload.data()['adminChatID'];
         const custEmail = a.payload.data()['custEmail'];
         const custID = a.payload.data()['custID'];
+        const totalPrice = a.payload.data()['totalPrice'];
 
-        return {id,name,mall,orderstatus,custstatus,shopperEmail,shopperName,shopperChat,adminChat,custEmail,custID};
+        return {id,name,mall,orderstatus,custstatus,shopperEmail,shopperName,shopperChat,adminChat,custEmail,custID,totalPrice};
       })
     )
   }

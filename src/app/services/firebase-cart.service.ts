@@ -12,6 +12,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class FirebaseCartService {
 
+  totalPrice: string;
   constructor(
     private authService: AuthService,
     private route: Router,
@@ -91,7 +92,7 @@ export class FirebaseCartService {
                   adminChatID: null,
                   shopperChatID: null,
                   createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-
+                  totalPrice: null,
               }).then(docRef =>{
                     console.log('add new order ' + docRef.id + ' for  email ' + user.email);              
                     resolve(docRef.id); 
@@ -245,9 +246,9 @@ export class FirebaseCartService {
    });
   }
 
-  checkout(){
+  checkout(totalPrice){
     // this.availOrder();
-    this.updateOrderStatus();
+    this.updateOrderStatus(totalPrice);
     const promise = new Promise<void>((resolve, reject) => {
       this.getCartId().then(cartId => {
         const db = firebase.firestore();
@@ -280,14 +281,15 @@ export class FirebaseCartService {
   }
 
 
-  updateOrderStatus(){
+  updateOrderStatus(totalPrice){
   const promise = new Promise<void>(() => {
     this.getOrderId().then(orderId => {
       // 
       // this.route.navigateByUrl('/cs-activity')
       this.route.navigateByUrl('/cs-payment/' + orderId)
       return firebase.firestore().collection('order/').doc(orderId).update({
-        orderStatus: 'Available'
+        orderStatus: 'Available',
+        totalPrice: totalPrice
       })
 
     })

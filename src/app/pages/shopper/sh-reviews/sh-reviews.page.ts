@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product';
+import { Product, ProductReview } from 'src/app/models/product';
 import { User } from 'src/app/models/user';
 import { FirebaseProductService } from 'src/app/services/firebase-product.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,7 +12,7 @@ import { ToastController, MenuController } from '@ionic/angular';
 })
 export class ShReviewsPage implements OnInit {
 
-  products: Product[];
+  products: ProductReview[];
   user: User = new User();
 
   reviews: any;

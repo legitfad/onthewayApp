@@ -73,7 +73,7 @@ export class ShOrderInfoPage implements OnInit {
     this.orderServiceService.getOrderByID(this.orderId).subscribe(res => {
       console.log('AcceptOrder: ', res)
       const user = new UserData(res.id, res.shopperEmail, res.shopperName, res.name, 
-        res.status, res.mall, res.shopperChat, res.adminChat, res.custEmail, res.custID,
+        res.status, res.mall, res.shopperChat, res.adminChat, res.custEmail, res.custID,res.totalPrice
         );
       this.dataId = res.id;
       this.AcceptOrder = user;

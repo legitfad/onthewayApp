@@ -1,5 +1,10 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button [routerLink] = "['/tabs/tabs/sh-new-orders']">
+        <ion-icon name="home" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>View Reviews</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,9 +20,9 @@
       </ion-thumbnail>
       <ion-label>
 
-        <h2> {{item.comments}} </h2>
+        <h2> {{item.comment}} </h2>
         <p> {{item.rating}} </p>
-        <p> {{item.picture}} </p>
+        <p> {{item.image}} </p>
 
      </ion-label>
 

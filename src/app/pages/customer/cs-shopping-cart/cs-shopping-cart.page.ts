@@ -15,6 +15,7 @@ export class CartPage implements OnInit {
   cart: CartItem[];
   order: any;
   orderID: '';
+  totalPrice: number;
 
   users = [];
   title = '';
@@ -32,7 +33,8 @@ export class CartPage implements OnInit {
   }
 
   checkout() {    
-    this.cartService.checkout().then((res) => {
+    this.totalPrice = this.getTotal();
+    this.cartService.checkout(this.totalPrice).then((res) => {
         this.order = res;
       // Refresh the cart after check out      
       this.cartService.getCartItems().then(        

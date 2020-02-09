@@ -13,7 +13,7 @@ import {map} from 'rxjs/operators';
 })
 export class FirebaseProductService {
 
-  allProducts: Product[] = [];
+  allProducts: ProductReview[] = [];
 
   constructor ( 
     private firestore: AngularFirestore,
@@ -21,20 +21,23 @@ export class FirebaseProductService {
     ) { }
 
   getAllProducts() {
-    const promise = new Promise<Product[]>((resolve, reject) => {
+    const promise = new Promise<ProductReview[]>((resolve, reject) => {
 
+      const user = this.auth.getCurrentUser();
+      const name = this.auth.username;
       const db = firebase.firestore();
       const storageRef = firebase.storage().ref();
 
         // Read from Firebase Database
-      const productsRef = db.collection('CustomerReviews',);
+      const productsRef = db.collection('CustomerReviews/');
+      
 
       productsRef.get().then(itemsSnapshot => {
 
         this.allProducts = []; // Empty array
 
         itemsSnapshot.forEach(doc => {
-          const p = new Product(doc.data().comment, doc.data().image, doc.data().rating,doc.data().custEmail);
+          const p = new ProductReview(doc.data().comment, doc.data().image, doc.data().rating,doc.data().custEmail);
           p.id = doc.id;
              // Read from Firebase Storage
              // Get the image download URL
@@ -60,7 +63,7 @@ export class FirebaseProductService {
     return promise;
    }
 
-  getProductById(id: string): Product { 
+  getProductById(id: string): ProductReview { 
     const result = this.allProducts.find(
       item => item.id === id
     );
