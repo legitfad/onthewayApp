@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { Product } from '../models/product';
 import { CartItem } from '../models/cart-item';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,12 @@ export class FirebaseCartService {
     private authService: AuthService,
     private route: Router,
   ) { } 
+
+  private cartItems = new BehaviorSubject([]);
+
+  getCart() {
+    return this.cartItems.asObservable();
+  }
 
   getCartId(){
     const promise = new Promise<string>((resolve, reject) => {      

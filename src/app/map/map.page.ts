@@ -56,7 +56,7 @@ export class MapPage implements OnInit {
       };
       map.setCenter(pos);
       const icon = {
-        url: 'assets/icon/shop.png', // image url
+        url: '../assets/icon/shop.png', // image url
         scaledSize: new google.maps.Size(50, 50), // scaled size
       };
       const marker = new google.maps.Marker({
