@@ -262,6 +262,24 @@ export class FirebaseCartService {
     return promise;  
   }
 
+  stripeCheckout(){
+    // this.availOrder();
+    this.updateStripeOrder();
+    const promise = new Promise<void>((resolve, reject) => {
+      this.getCartId().then(cartId => {
+        const db = firebase.firestore();
+      // Update cart status to 'ordered' in DB
+      const cartRef = db.collection('carts/').doc(cartId);
+      cartRef.update({
+        status: 'Ordered'
+      });
+      resolve();
+    });         
+    });    
+    return promise;  
+  }
+
+
   updateOrderStatus(){
   const promise = new Promise<void>(() => {
     this.getOrderId().then(orderId => {
@@ -276,6 +294,20 @@ export class FirebaseCartService {
   })
     return promise;
   }
+  updateStripeOrder(){
+    const promise = new Promise<void>(() => {
+      this.getOrderId().then(orderId => {
+        // 
+        // this.route.navigateByUrl('/cs-activity')
+        this.route.navigateByUrl('/cs-stripe/' + orderId)
+        return firebase.firestore().collection('order/').doc(orderId).update({
+          orderStatus: 'Available'
+        })
+  
+      })
+    })
+      return promise;
+    }
 
   availOrder() {
     const promise = new Promise<void>(() => {

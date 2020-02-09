@@ -31,7 +31,7 @@ export class CartPage implements OnInit {
     this.cartService.removeOrder(item);
   }
 
-  checkout(){    
+  checkout() {    
     this.cartService.checkout().then((res) => {
         this.order = res;
       // Refresh the cart after check out      
@@ -42,6 +42,16 @@ export class CartPage implements OnInit {
   }
   getTotal() {
     return this.cart.reduce((i, j) => i + j.product.price * j.quantity, 0);
+  }
+
+  stripeOut() {
+    this.cartService.stripeCheckout().then((res) => {
+      this.order = res;
+    // Refresh the cart after check out      
+    this.cartService.getCartItems().then(        
+      result => this.cart = result,      
+      );    
+    }); 
   }
 
   ngOnInit() {
