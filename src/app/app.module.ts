@@ -26,7 +26,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ShOrderInfoPage } from './pages/shopper/sh-order-info/sh-order-info.page';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { AngularFireFunctionsModule, FUNCTIONS_REGION } from '@angular/fire/functions';
-// import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   declarations: [
@@ -65,8 +65,8 @@ import { AngularFireFunctionsModule, FUNCTIONS_REGION } from '@angular/fire/func
     Camera,
     ShOrderInfoPage,
     Geolocation,
-    { provide: FUNCTIONS_REGION, useValue: 'us-central1' }
-    // InAppBrowser
+    { provide: FUNCTIONS_REGION, useValue: 'us-central1' },
+    InAppBrowser
   ],
   bootstrap: [AppComponent]
 })

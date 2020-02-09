@@ -29,3 +29,9 @@ export class UserData {
     }
 }
 
+export class orderAmt {
+    constructor( 
+        public totalPrice: number,
+    ) {}
+}
+

@@ -2,7 +2,6 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
-      <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Order History</ion-title>
   </ion-toolbar>
@@ -10,6 +9,8 @@
 
 <ion-content>
   <h1>Order History</h1>
+
+  <ion-button [routerLink]= "['/cs-reciepts']" expand="block">View Reciepts</ion-button>
   <ion-card *ngFor="let item of completeOrder" [routerLink]="['/cs-order-info', item.id]" >
     <ion-row>
 

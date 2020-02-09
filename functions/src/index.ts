@@ -43,7 +43,6 @@ export const startPaymentIntent = functions.https.onCall(
       });
 
       await admin.firestore().collection('orders').doc(intent.id).set({
-        items: data.items,
         status: 'Waiting for payment',
         amount: data.amount / 100,
         customerId: userData.customerId,

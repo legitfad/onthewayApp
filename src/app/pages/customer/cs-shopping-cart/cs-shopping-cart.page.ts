@@ -47,7 +47,8 @@ export class CartPage implements OnInit {
   }
 
   stripeOut() {
-    this.cartService.stripeCheckout().then((res) => {
+    this.totalPrice = this.getTotal();
+    this.cartService.stripeCheckout(this.totalPrice).then((res) => {
       this.order = res;
     // Refresh the cart after check out      
     this.cartService.getCartItems().then(        

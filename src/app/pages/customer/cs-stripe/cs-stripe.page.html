@@ -37,7 +37,7 @@
       {{ cardErrors}}
     </div>
 
-    <ion-button expand="full" type="submit" [disabled]="!dataForm.valid">Buy now for ${{ getTotal() }}</ion-button>
+    <ion-button expand="full" type="submit" [disabled]="!dataForm.valid">Buy now for ${{ getTotal() | currency}}</ion-button>
   </form>
 
 </ion-content>

@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CsHistoryPageRoutingModule } from './cs-history-routing.module';
+import { CsRecieptsPageRoutingModule } from './cs-reciepts-routing.module';
 
-import { CsHistoryPage } from './cs-history.page';
+import { CsRecieptsPage } from './cs-reciepts.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CsHistoryPageRoutingModule
+    CsRecieptsPageRoutingModule
   ],
-  declarations: [CsHistoryPage]
+  declarations: [CsRecieptsPage]
 })
-export class CsHistoryPageModule {}
+export class CsRecieptsPageModule {}

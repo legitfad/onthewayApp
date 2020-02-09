@@ -112,6 +112,10 @@ const routes: Routes = [
     path: 'cs-history',
     loadChildren: () => import('./pages/customer/cs-history/cs-history.module').then( m => m.CsHistoryPageModule)
   },
+  {
+    path: 'cs-reciepts',
+    loadChildren: () => import('./pages/customer/cs-reciepts/cs-reciepts.module').then( m => m.CsRecieptsPageModule)
+  },
 
 ];
 

@@ -4,8 +4,12 @@ import { LoadingController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductService } from 'src/app/services/product.service';
 import { FirebaseCartService } from 'src/app/services/firebase-cart.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { CartItem } from 'src/app/models/cart-item';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { OrderServiceService } from 'src/app/services/order-services/order-service.service';
+import { orderAmt } from 'src/app/models/user';
 
 declare var Stripe;
 
@@ -17,7 +21,10 @@ declare var Stripe;
 export class CsStripePage implements OnInit {
 
   dataForm: FormGroup;
-  cart = [];
+  cart: CartItem[];
+  
+  orderId: any;
+  cost: number;
 
   stripe;
   card;
@@ -32,20 +39,30 @@ export class CsStripePage implements OnInit {
     private productService: ProductService,
     private toastCtrl: ToastController,
     private cartService: FirebaseCartService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private firestore: AngularFirestore,
+    private orderSvc: OrderServiceService,
+
+  ) { }
 
   ngOnInit() {
-    this.cartService.getCart().subscribe(res => {
+    this.cartService.getCartItems().then(res => {
       this.cart = res;
     });
+    this.orderId = this.activatedRoute.snapshot.params.id;
+
+    this.orderSvc.getOrderByID(this.orderId).subscribe(res => {
+        this.cost = res.totalPrice;
+    })
+
 
     this.dataForm = this.fb.group({
       name: ["Fadzil", Validators.required],
       zip: ["088661", Validators.required],
       street: ["16 Spottiswoode Park Rd", Validators.required],
       city: ["Singapore", Validators.required],
-      country: ["Singapore", Validators.required]
+      country: ["SG", Validators.required]
     });
 
     this.stripe = Stripe(environment.stripe_key);
@@ -61,7 +78,12 @@ export class CsStripePage implements OnInit {
   }
 
   getTotal() {
-    return this.cart.reduce((i, j) => i + j.price * j.amount, 0);
+    return Math.round(this.cost * 100) / 100;
+  }
+
+  getTotal2() {
+    // return this.cart.reduce((i, j) => i + j.product.price * j.quantity, 0);
+    return Math.round(this.cost * 100);
   }
 
   async buyNow() {
@@ -81,15 +103,12 @@ export class CsStripePage implements OnInit {
       receipt_email: this.authService.getEmail()
     };
 
-    const items = this.cart.map(item => {
-      return { id: item.id, amount: item.amount };
-    });
-
+    
     const loading = await this.loadingCtrl.create();
     await loading.present();
 
     this.productService
-      .startPaymentIntent(this.getTotal() * 100, items)
+      .startPaymentIntent(this.getTotal2())
       .subscribe(async paymentIntent => {
         console.log("my payment intent: ", paymentIntent);
         const secret = paymentIntent.client_secret;
@@ -116,7 +135,7 @@ export class CsStripePage implements OnInit {
             duration: 3000
           });
           await toast.present();
-          this.router.navigateByUrl('/buyer/list');
+          this.router.navigateByUrl('/cs-order-info/' + this.orderId);
         }
       }, async err => {
         await loading.dismiss();

@@ -65,12 +65,21 @@ export class ProductService {
         ref.category = product.category;    
   } 
 
-  startPaymentIntent(amount, items) {
+  startPaymentIntent(amount) {
     const callable = this.functions.httpsCallable('startPaymentIntent');
-    const obs = callable({ userId: this.afAuth.auth.currentUser.uid, amount, items});
+    const obs = callable({ userId: this.afAuth.auth.currentUser.uid, amount});
+    return obs;
+  }
+  
+  getCustomerOrders() {
+    const callable = this.functions.httpsCallable('getCustomerOrders');
+    const obs = callable({ userId: this.afAuth.auth.currentUser.uid});
     return obs;
   }
 
+  getOrderData(paymentIntentID) {
+    return this.db.doc(`orders/${paymentIntentID}`).valueChanges();
+  }
 
 }
 

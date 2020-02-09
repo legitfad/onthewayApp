@@ -94,7 +94,7 @@ export class FirebaseCartService {
                   createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                   totalPrice: null,
                   shopperAdminID: null,
-                  
+
               }).then(docRef =>{
                     console.log('add new order ' + docRef.id + ' for  email ' + user.email);              
                     resolve(docRef.id); 
@@ -265,9 +265,9 @@ export class FirebaseCartService {
     return promise;  
   }
 
-  stripeCheckout(){
+  stripeCheckout(totalPrice){
     // this.availOrder();
-    this.updateStripeOrder();
+    this.updateStripeOrder(totalPrice);
     const promise = new Promise<void>((resolve, reject) => {
       this.getCartId().then(cartId => {
         const db = firebase.firestore();
@@ -298,14 +298,15 @@ export class FirebaseCartService {
   })
     return promise;
   }
-  updateStripeOrder(){
+  updateStripeOrder(totalPrice){
     const promise = new Promise<void>(() => {
       this.getOrderId().then(orderId => {
         // 
         // this.route.navigateByUrl('/cs-activity')
         this.route.navigateByUrl('/cs-stripe/' + orderId)
         return firebase.firestore().collection('order/').doc(orderId).update({
-          orderStatus: 'Available'
+          orderStatus: 'Available',
+          totalPrice: totalPrice
         })
   
       })
