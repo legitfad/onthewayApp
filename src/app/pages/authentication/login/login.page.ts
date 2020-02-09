@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
 
   ionViewWillEnter() {
     this.menuCtrl.enable(false);
-   }
+  }
 
  login() {
     this.auth.signIn(this.loginForm.value).subscribe(user => {
@@ -77,7 +77,7 @@ export class LoginPage implements OnInit {
 
   navigateByRole(role) {
     if (role == 'CUSTOMER') {
-      this.router.navigateByUrl('/cs-list');
+      this.router.navigateByUrl('/map');
     } else if (role == 'SHOPPER') {
       this.router.navigateByUrl('/tabs/tabs/sh-new-orders');
     } else if (role == 'ADMIN') {

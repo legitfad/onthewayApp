@@ -104,6 +104,10 @@ const routes: Routes = [
     path: 'cs-stripe/:id', canActivate: [AuthGuard],
     loadChildren: () => import('./pages/customer/cs-stripe/cs-stripe.module').then( m => m.CsStripePageModule)
   },
+  {
+    path: 'maps',
+    loadChildren: () => import('./map/map.module').then( m => m.MapPageModule)
+  },
 
 ];
 

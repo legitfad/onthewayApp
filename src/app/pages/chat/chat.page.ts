@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IonContent, ActionSheetController, AlertController } from '@ionic/angular';
+import { IonContent, ActionSheetController, AlertController, MenuController } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ChatService } from 'src/app/services/chat.service';
@@ -31,9 +31,14 @@ export class ChatPage implements OnInit {
     private camera: Camera,
     private actionSheetCtrl: ActionSheetController,
     private alertCtrl: AlertController,
+    private menuCtrl: MenuController,
 
   ) { }
 
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
+  
   ngOnInit() {
     this.route.params.subscribe(data => {
       this.chatService.getOneChatGroup(data.id).subscribe(res => {

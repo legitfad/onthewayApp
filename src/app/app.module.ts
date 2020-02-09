@@ -25,6 +25,8 @@ import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ShOrderInfoPage } from './pages/shopper/sh-order-info/sh-order-info.page';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { AngularFireFunctionsModule, FUNCTIONS_REGION } from '@angular/fire/functions';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     AngularFireAuthModule,
     AngularFireStorageModule,
     NgxQRCodeModule,
+    AngularFireFunctionsModule,
   ],
   providers: [
     StatusBar,
@@ -61,7 +64,9 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     Base64ToGallery,
     Camera,
     ShOrderInfoPage,
-    Geolocation
+    Geolocation,
+    { provide: FUNCTIONS_REGION, useValue: 'us-central1' },
+    InAppBrowser
   ],
   bootstrap: [AppComponent]
 })

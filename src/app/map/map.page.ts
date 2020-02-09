@@ -3,6 +3,7 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 declare var google;
 
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.page.html',
@@ -36,7 +37,6 @@ export class MapPage implements OnInit {
       destination: ['', Validators.required]
     });
   }
-
   ngAfterViewInit(): void {
     this.geolocation.getCurrentPosition().then((resp) => {
       // this.latitude = resp.coords.latitude;
@@ -73,7 +73,7 @@ export class MapPage implements OnInit {
       '<img src="assets/icon/gg.png" width="200">' +
       '<p><b>OTW </b> Best shopping experience u never had</p>' +
       ' '
-      +'<a href="home">Shop Now</a>'
+      +'<a href="/cs-list">Shop Now</a>'
       const infowindow = new google.maps.InfoWindow({
         content: contentString,
         maxWidth: 400
