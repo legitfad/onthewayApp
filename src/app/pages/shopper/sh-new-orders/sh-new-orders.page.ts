@@ -21,6 +21,8 @@ export class ShNewOrdersPage implements OnInit {
   constructor(
     private orderService: OrderServiceService,
     private authService: AuthService,
+    private auth: AuthService,
+    private router: Router,
 
   ) {
     const user = this.authService.getCurrentUser();
@@ -28,6 +30,12 @@ export class ShNewOrdersPage implements OnInit {
       console.log('res: ', res);
       this.allOrder = res;
       this.order = res;
+    });
+  }
+
+  logout() {
+    this.auth.signOut().then(() => {
+      this.router.navigateByUrl('/login');
     });
   }
   

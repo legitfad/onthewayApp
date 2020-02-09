@@ -74,7 +74,7 @@ export class LoginPage implements OnInit {
     if (role == 'CUSTOMER') {
       this.router.navigateByUrl('/cs-list');
     } else if (role == 'SHOPPER') {
-      this.router.navigateByUrl('/sh-new-orders');
+      this.router.navigateByUrl('/tabs/sh-new-orders');
     } else if (role == 'ADMIN') {
       this.router.navigateByUrl('/dashboard');
     }

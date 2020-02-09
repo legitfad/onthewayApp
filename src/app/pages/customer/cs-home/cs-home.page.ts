@@ -3,6 +3,8 @@ import { ToastController } from '@ionic/angular';
 import { Product } from 'src/app/models/product';
 import { FirebaseCartService } from 'src/app/services/firebase-cart.service';
 import { ProductService } from 'src/app/services/product.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +20,9 @@ export class HomePage {
   constructor(
     public toastController: ToastController, 
     private cartService: FirebaseCartService, 
-    private productService: ProductService 
+    private productService: ProductService,
+    private auth: AuthService,
+    private router: Router,
   ) {
   }
 
@@ -75,6 +79,13 @@ export class HomePage {
         event.target.complete();
       }, 500);
     }
+
+    logout() {
+      this.auth.signOut().then(() => {
+        this.router.navigateByUrl('/login');
+      });
+    }
+  
  
  
 }

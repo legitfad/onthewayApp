@@ -25,76 +25,20 @@ export class AppComponent {
 
   public allPagesMenu = [
     {
-      title: 'Active Orders',
-      url: '/sh-new-orders',
-      icon: 'cash'    
-    },
-    {
-      title: 'My Activity',
-      url: '/sh-activity',
-      icon: 'cash'    
-    },
-    {
-      title: 'CS Activity',
+      title: 'My Orders',
       url: '/cs-activity',
       icon: 'cash'    
     },
     {
-      title: 'Shopping Cart',
-      url: '/cs-shopping-cart',
-      icon: 'cart'    
-    },
-    {
-      title: 'Payment',
-      url: '/cs-payment',
-      icon: 'card'    
-    }
-  ];
-
-  public shopperSideMenu = [
-    {
-      title: 'Active Orders',
-      url: '/sh-new-orders',
-      icon: 'cash'    
-    },
-    {
-      title: 'My Activity',
-      url: '/sh-activity',
-      icon: 'cash'    
-    },
-    {
-      title: 'CS Activity',
-      url: '/cs-activity',
-      icon: 'cash'    
-    },
-    {
-      title: 'Shopping Cart',
-      url: '/cs-shopping-cart',
-      icon: 'cart'    
-    },
-    {
-      title: 'Payment',
-      url: '/cs-payment',
-      icon: 'card'    
-    }
-  ];
-
-  public customerSideMenu = [
-    {
-      title: 'Start Shopping!',
+      title: 'Stores',
       url: '/cs-list',
-      icon: 'cash' 
-    },
-    {
-      title: 'My Orders (CS)',
-      url: '/cs-activity',
-      icon: 'cash' 
+      icon: 'cash'    
     },
     {
       title: 'Shopping Cart',
       url: '/cs-shopping-cart',
       icon: 'cart'    
-    },
+    }
   ];
 
   constructor(
@@ -116,9 +60,7 @@ export class AppComponent {
       AuthService.initialize();
       
       firebase.auth().onAuthStateChanged((firebaseUser: firebase.User) => {
-      if (firebaseUser){
-
-        
+      if (firebaseUser){    
         this.menuCtrl.enable(true, 'authenticated');
       } else {
         this.menuCtrl.enable(true,'unauthenticated');
@@ -127,14 +69,14 @@ export class AppComponent {
     });
   }
 
-  navigateByRole(role) {
-    if (role == 'CUSTOMER') {
-      this.menuCtrl.enable(true, 'authenticatedCust');
-    } else if (role == 'SHOPPER') {
-      this.menuCtrl.enable(true, 'authenticatedCust');
-    } else if (role == 'ADMIN') {
-      this.menuCtrl.enable(true, 'authenticated');
-    }
-  }
+  // navigateByRole(role) {
+  //   if (role == 'CUSTOMER') {
+  //     this.menuCtrl.enable(true, 'authenticatedCust');
+  //   } else if (role == 'SHOPPER') {
+  //     this.menuCtrl.enable(true, 'authenticatedCust');
+  //   } else if (role == 'ADMIN') {
+  //     this.menuCtrl.enable(true, 'authenticated');
+  //   }
+  // }
 
 }

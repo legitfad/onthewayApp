@@ -28,7 +28,6 @@
         </ion-list>
       </ion-content>
     </ion-menu>
-
     
     <ion-menu contentId= "main-content" type="overlay" menuId="authenticated">
       <ion-header>
@@ -52,7 +51,7 @@
       </ion-content>
     </ion-menu>
 
-    <ion-menu contentId= "main-content" type="overlay" menuId="authenticatedCust">
+    <!-- <ion-menu contentId= "main-content" type="overlay" menuId="authenticatedCust">
       <ion-header>
         <ion-toolbar>
           <ion-title>
@@ -74,6 +73,28 @@
       </ion-content>
     </ion-menu>
     
+    <ion-menu contentId= "main-content" type="overlay" menuId="authenticatedShop">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>
+            Menu
+          </ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of shopperSideMenu">
+            <ion-item [routerDirection] ="'root'" [routerLink] = "[p.url]">
+              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+              <ion-label>
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu> -->
+
     <ion-router-outlet id="main-content"></ion-router-outlet>
   </ion-split-pane>
 

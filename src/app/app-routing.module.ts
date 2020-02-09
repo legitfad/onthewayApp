@@ -15,10 +15,10 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./pages/authentication/register/register.module').then( m => m.RegisterPageModule)
   },
-  {
-    path: 'sh-activity',
-    loadChildren: () => import('./pages/shopper/sh-activity/sh-activity.module').then( m => m.ShActivityPageModule)
-  },
+  // {
+  //   path: 'sh-activity',
+  //   loadChildren: () => import('./pages/shopper/sh-activity/sh-activity.module').then( m => m.ShActivityPageModule)
+  // },
   {
     path: 'sh-history',
     loadChildren: () => import('./pages/shopper/sh-history/sh-history.module').then( m => m.ShHistoryPageModule)
@@ -27,10 +27,10 @@ const routes: Routes = [
     path: 'sh-order-info/:id',
     loadChildren: () => import('./pages/shopper/sh-order-info/sh-order-info.module').then( m => m.ShOrderInfoPageModule)
   },
-  {
-    path: 'sh-new-orders',
-    loadChildren: () => import('./pages/shopper/sh-new-orders/sh-new-orders.module').then( m => m.ShNewOrdersPageModule)
-  },
+  // {
+  //   path: 'sh-new-orders',
+  //   loadChildren: () => import('./pages/shopper/sh-new-orders/sh-new-orders.module').then( m => m.ShNewOrdersPageModule)
+  // },
   {
     path: 'cs-order-collect',
     loadChildren: () => import('./modals/customer/cs-order-collect/cs-order-collect.module').then( m => m.CsOrderCollectPageModule)
@@ -94,7 +94,11 @@ const routes: Routes = [
   {
     path: 'cs-profile',
     loadChildren: () => import('./pages/customer/cs-profile/cs-profile.module').then( m => m.CsProfilePageModule)
-  }
+  },
+  {
+    path: '',
+    loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
+  },
 ];
 
 @NgModule({
