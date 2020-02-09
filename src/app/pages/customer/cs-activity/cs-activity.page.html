@@ -15,8 +15,10 @@
 <ion-content>
 
   <h1 class="ion-text-start heading">Activity Page</h1>
-
-    <ion-card *ngFor="let item of orderedOrders" 
+  <ion-button  class="availButton" expand="block" color="warning" size="small"
+   [routerLink] = "['/cs-history']" >History</ion-button>
+<div *ngFor="let item of orderedOrders">
+    <ion-card *ngIf ="item.status != 'Collected'" 
     [routerLink]="['/cs-order-info', item.id]" padding>
 
     <ion-row>
@@ -47,6 +49,7 @@
     </ion-row>
 
     </ion-card>
+  </div>
 
 
 </ion-content>

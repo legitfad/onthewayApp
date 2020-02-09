@@ -104,6 +104,10 @@ const routes: Routes = [
     path: 'cs-stripe/:id', canActivate: [AuthGuard],
     loadChildren: () => import('./pages/customer/cs-stripe/cs-stripe.module').then( m => m.CsStripePageModule)
   },
+  {
+    path: 'cs-history',
+    loadChildren: () => import('./pages/customer/cs-history/cs-history.module').then( m => m.CsHistoryPageModule)
+  },
 
 ];
 

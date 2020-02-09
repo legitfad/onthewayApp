@@ -11,12 +11,18 @@
 
 <ion-content>
 
-  <h1 class="ion-text-start heading">Activity Page</h1>
+  <h1 class="ion-text-start heading">Activity Page</h1> 
+  <ion-button  class="availButton" expand="block" color="warning" size="small"
+   [routerLink] = "['/sh-history']" >History</ion-button>
 
-    <ion-card *ngFor="let item of acceptedOrders" 
+  <div  *ngFor="let item of acceptedOrders" >
+    <ion-card *ngIf ="item.status != 'Collected'" 
     [routerLink]="['/sh-order-info', item.id]" padding>
+   
 
-    <ion-row>
+   
+
+    <ion-row >
 
     <ion-col size="6">
     <!-- <ion-icon [name]=item.custImage slot="start"></ion-icon> -->
@@ -43,6 +49,7 @@
     </ion-row>
 
     </ion-card>
+  </div>
 
 
 </ion-content>

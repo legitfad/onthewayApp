@@ -51,7 +51,20 @@ export class OrderServiceService {
   }
 
   readCompleteOrder(){
-    return this.firestore.collection('order/', ref => ref.where('orderStatus', '==', 'Completed')).snapshotChanges().pipe(
+    return this.firestore.collection('order/', ref => ref.where('orderStatus', '==', 'Collected')).snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const status = a.payload.doc.data()['orderStatus'];
+        const shopperEmail = a.payload.doc.data()['shopperEmail'];
+        const mallName = a.payload.doc.data()['mallName'];
+        const id = a.payload.doc.id;
+        const custName = a.payload.doc.data()['custName'];
+
+        return {status, shopperEmail, mallName, id, custName};
+      }))
+    )
+  }
+  readCollectedOrder(){
+    return this.firestore.collection('order/', ref => ref.where('custStatus', '==', 'Collected')).snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const status = a.payload.doc.data()['orderStatus'];
         const shopperEmail = a.payload.doc.data()['shopperEmail'];
@@ -150,6 +163,19 @@ readOrderedOrder(){
 
         return { id, mallName, status, custName, ShopperEmail };
       }))
+    )
+  }
+  getOrderHistory(){
+    return this.firestore.collection('order', ref => ref.where('orderStatus', '==','collected')).snapshotChanges().pipe(
+    map(actions => actions.map(a => {
+      const shopperEmail = a.payload.doc.data()['shopperEmail'];
+      const mallName = a.payload.doc.data()['mallName'];
+      const id = a.payload.doc.id;
+      const status = a.payload.doc.data()['orderStatus'];
+      const custName = a.payload.doc.data()['custName'];
+      
+      return {id,shopperEmail,mallName,status,custName};
+    }))
     )
   }
   getAcceptedOrderItem(orderId) {

@@ -31,6 +31,9 @@
         <ion-button (click)="returnfield(item)"
         class="availButton" expand="block" color="warning" size="small">
         <p class="text-color">{{item.status}}</p></ion-button>
+        <ion-button [routerLink] = "['/cs-review']"
+        class="availButton" expand="block" color="warning" size="small">
+        <p class="text-color">Review</p></ion-button>
       </ion-row>
         <ion-row></ion-row>
       </ion-col>  
