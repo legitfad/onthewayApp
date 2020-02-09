@@ -36,6 +36,7 @@ export class MapPage implements OnInit {
       destination: ['', Validators.required]
     });
   }
+
   ngAfterViewInit(): void {
     this.geolocation.getCurrentPosition().then((resp) => {
       // this.latitude = resp.coords.latitude;
@@ -81,7 +82,8 @@ export class MapPage implements OnInit {
         infowindow.open(map, marker);
       });
     }
-calculateAndDisplayRoute(formValues) {
+
+  calculateAndDisplayRoute(formValues) {
     const that = this;
     this.directionsService.route({
       origin: this.currentLocation,
