@@ -6,6 +6,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ChatService } from 'src/app/services/chat.service';
 import { forkJoin } from 'rxjs';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sh-new-orders',
@@ -23,6 +24,7 @@ export class ShNewOrdersPage implements OnInit {
     private authService: AuthService,
     private auth: AuthService,
     private router: Router,
+    private menuCtrl: MenuController,
 
   ) {
     const user = this.authService.getCurrentUser();
@@ -31,6 +33,10 @@ export class ShNewOrdersPage implements OnInit {
       this.allOrder = res;
       this.order = res;
     });
+  }
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
   }
 
   logout() {

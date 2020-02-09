@@ -4,6 +4,7 @@ import { FirebaseOrderService } from 'src/app/services/order-services/firebase-o
 import { OrderServiceService } from 'src/app/services/order-services/order-service.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sh-activity',
@@ -23,7 +24,8 @@ export class ShActivityPage implements OnInit {
     private orderService: OrderServiceService,
     private auth: AuthService,
     private router: Router,
-    
+    private menuCtrl: MenuController,
+
   ) {
     const user = this.auth.getCurrentUser();
     this.orderService.getAcceptedOrder(user.email).subscribe(res => {
@@ -36,6 +38,10 @@ export class ShActivityPage implements OnInit {
     this.auth.signOut().then(() => {
       this.router.navigateByUrl('/login');
     });
+  }
+  
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
   }
 
   ngOnInit() {

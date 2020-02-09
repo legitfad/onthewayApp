@@ -66,7 +66,7 @@ export class RegisterPage implements OnInit {
     if (role == 'CUSTOMER') {
       this.router.navigateByUrl('/cs-list');
     } else if (role == 'SHOPPER') {
-      this.router.navigateByUrl('/sh-new-orders');
+      this.router.navigateByUrl('/tabs/tabs/sh-new-orders');
     }
   }
 

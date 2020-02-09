@@ -3,7 +3,7 @@ import { Product } from 'src/app/models/product';
 import { User } from 'src/app/models/user';
 import { FirebaseProductService } from 'src/app/services/firebase-product.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sh-reviews',
@@ -21,13 +21,18 @@ export class ShReviewsPage implements OnInit {
     private productService: FirebaseProductService,
     private auth: AuthService , 
     private toastController: ToastController,
+    private menuCtrl: MenuController,
+
   ) { }
 
   ngOnInit() {
   }
 
-  ionViewDidEnter() {
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
 
+  ionViewDidEnter() {
     this.productService.getAllProducts().then(
       result => this.products = result
     );

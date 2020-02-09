@@ -93,6 +93,10 @@ export class AuthService {
       username
     });
   }
+
+  getEmail() {
+    return this.afAuth.auth.currentUser.email;
+  }
  
   get authenticated(): boolean {
     return this.user !== null;

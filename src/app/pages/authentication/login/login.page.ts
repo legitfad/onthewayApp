@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { AlertController, ToastController, LoadingController } from '@ionic/angular';
+import { AlertController, ToastController, LoadingController, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,6 +21,7 @@ export class LoginPage implements OnInit {
     private toastCtrl: ToastController, 
     private router: Router,
     private loadingCtrl: LoadingController,
+    private menuCtrl: MenuController,
     
   ) {  }
 
@@ -29,6 +30,10 @@ export class LoginPage implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
+  }
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
   }
 
  login() {
@@ -72,7 +77,7 @@ export class LoginPage implements OnInit {
 
   navigateByRole(role) {
     if (role == 'CUSTOMER') {
-      this.router.navigateByUrl('/cs-list');
+      this.router.navigateByUrl('/map');
     } else if (role == 'SHOPPER') {
       this.router.navigateByUrl('/tabs/tabs/sh-new-orders');
     } else if (role == 'ADMIN') {

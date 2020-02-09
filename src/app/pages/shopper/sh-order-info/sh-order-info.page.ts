@@ -10,7 +10,7 @@ import { FirebaseOrderService } from 'src/app/services/order-services/firebase-o
 import { OrderServiceService } from 'src/app/services/order-services/order-service.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ShProgressChangePage } from 'src/app/modals/shopper/sh-progress-change/sh-progress-change.page';
-import { ModalController } from '@ionic/angular';
+import { ModalController, MenuController } from '@ionic/angular';
 import { ShQRPage } from 'src/app/modals/shopper/sh-qr/sh-qr.page';
 import { ChatService } from 'src/app/services/chat.service';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -58,9 +58,14 @@ export class ShOrderInfoPage implements OnInit {
     private chatSvc: ChatService,
     private db: AngularFirestore,
     private router: Router,
+    private menuCtrl: MenuController,
 
   ) {
    
+  }
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
   }
 
   ngOnInit() {

@@ -105,6 +105,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/customer/cs-stripe/cs-stripe.module').then( m => m.CsStripePageModule)
   },
   {
+    path: 'maps',
+    loadChildren: () => import('./map/map.module').then( m => m.MapPageModule)
+  },
+  {
     path: 'cs-history',
     loadChildren: () => import('./pages/customer/cs-history/cs-history.module').then( m => m.CsHistoryPageModule)
   },

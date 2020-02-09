@@ -4,6 +4,7 @@ import { OrderServiceService } from 'src/app/services/order-services/order-servi
 import { ActivatedRoute, Router } from '@angular/router';
 import { FirebaseCartService } from 'src/app/services/firebase-cart.service';
 import { CartItem } from 'src/app/models/cart-item';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cs-payment',
@@ -31,6 +32,7 @@ export class CsPaymentPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private cartService: FirebaseCartService,
     private router: Router,
+    private menuCtrl: MenuController,
     
   ) { }
 
@@ -42,6 +44,11 @@ export class CsPaymentPage implements OnInit {
       console.log(data.id)
     })
   }
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+  }
+
   CreatePayment() {
     let record = {};
     record['fullname'] = this.fullname;
