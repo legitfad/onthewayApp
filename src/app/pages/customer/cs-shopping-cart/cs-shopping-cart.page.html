@@ -22,6 +22,11 @@
           <p>{{item.product.price | currency}}</p>
         </ion-label>
       </ion-item>
+      <ion-item>
+        <ion-row>
+            Total: {{ getTotal() }}
+        </ion-row>
+    </ion-item>
       <ion-item-options>
         <ion-button full expandable (click)="delete(item)">
           Delete
@@ -30,11 +35,7 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-  <ion-item>
-    <ion-row>
-        Total: {{ getTotal() }}
-    </ion-row>
-</ion-item>
+ 
   <ion-button expand ="block" color ="tertiary"
   (click)="checkout()" *ngIf ="cart && cart.length > 0">
     Proceed to Payment
