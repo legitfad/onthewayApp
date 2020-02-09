@@ -131,7 +131,8 @@ readOrderedOrder(){
         const id = a.payload.id;
         const name = a.payload.data()['custName'];
         const mall = a.payload.data()['mallName'];
-        const status = a.payload.data()['orderStatus'];
+        const orderstatus = a.payload.data()['orderStatus'];
+        const custstatus = a.payload.data()['custStatus'];
         const shopperEmail = a.payload.data()['shopperEmail'];
         const shopperName = a.payload.data()['shopperName'];
         const shopperChat = a.payload.data()['shopperChatID'];
@@ -139,7 +140,7 @@ readOrderedOrder(){
         const custEmail = a.payload.data()['custEmail'];
         const custID = a.payload.data()['custID'];
 
-        return {id,name,mall,status,shopperEmail,shopperName,shopperChat,adminChat,custEmail,custID};
+        return {id,name,mall,orderstatus,custstatus,shopperEmail,shopperName,shopperChat,adminChat,custEmail,custID};
       })
     )
   }

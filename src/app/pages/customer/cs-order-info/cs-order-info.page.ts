@@ -53,9 +53,9 @@ export class CsOrderInfoPage implements OnInit {
       }
       console.log('Ordered Order:', res);
       const user = new UserData(res.id, res.shopperEmail, res.shopperName, res.name, 
-        res.status, res.mall, res.shopperChat, res.adminChat, res.custEmail, res.custID,
+        res.custstatus, res.mall, res.shopperChat, res.adminChat, res.custEmail, res.custID,
         );
-      this.orderStatus = res.status;
+      this.orderStatus = res.custstatus;
       this.orderedOrder = user;
       this.orderById.push(this.orderedOrder);
       console.log('orderOrder: ', this.orderById)
