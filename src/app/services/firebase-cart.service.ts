@@ -93,6 +93,8 @@ export class FirebaseCartService {
                   shopperChatID: null,
                   createdAt: firebase.firestore.FieldValue.serverTimestamp(),
                   totalPrice: null,
+                  shopperAdminID: null,
+                  
               }).then(docRef =>{
                     console.log('add new order ' + docRef.id + ' for  email ' + user.email);              
                     resolve(docRef.id); 

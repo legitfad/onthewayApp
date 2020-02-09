@@ -23,6 +23,7 @@ export class UserData {
         public custEmail: string,
         public custID: string,
         public totalPrice: number,
+        public shopperAdminChat: string
     ) {
 
     }

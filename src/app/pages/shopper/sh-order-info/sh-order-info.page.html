@@ -57,13 +57,21 @@
 
         </ion-col>
 
-      <ion-label>
-        <div class = 'itemDetails'>
     
-          <h1 class="mainName">{{item.StoreName}}</h1>
-  
-    <p class="otherInfo ion-float-left">{{item.ItemName}} x{{item.Quantity}}</p>
-    <p class="otherInfo ion-float-right">{{item.ItemPrice | currency}}</p>
+        <ion-label>
+          <div class = 'itemDetails'>
+      <ion-col>
+            <h1 class="mainName">{{item.StoreName}}</h1>
+    
+      <p class="otherInfo ion-float-left" text-wrap>{{item.itemName}}</p>
+    </ion-col>
+    <ion-col>
+      <ion-row>
+      <p class="otherInfo ion-float-right">{{item.itemPrice | currency}}  x{{item.quantity}}</p>
+    </ion-row><ion-row>
+      <p class="otherInfo ion-float-right">{{item.itemPrice * item.quantity | currency}}</p>
+    </ion-row>
+    </ion-col> 
     </div>
       </ion-label>
     </ion-grid>

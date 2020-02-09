@@ -43,10 +43,12 @@ export class ShOrderInfoPage implements OnInit {
   custID: null;
   ADusers = [];
   SHusers = [];
+  title = '';
   shopTitle = '';
   participant = '';
 
   custChatID: null;
+  adminShopper: null;
 
   constructor(
     private orderService: OrdersService,
@@ -73,7 +75,8 @@ export class ShOrderInfoPage implements OnInit {
     this.orderServiceService.getOrderByID(this.orderId).subscribe(res => {
       console.log('AcceptOrder: ', res)
       const user = new UserData(res.id, res.shopperEmail, res.shopperName, res.name, 
-        res.status, res.mall, res.shopperChat, res.adminChat, res.custEmail, res.custID,res.totalPrice
+        res.status, res.mall, res.shopperChat, res.adminChat, res.custEmail, res.custID,
+        res.totalPrice, res.shopperAdminChat
         );
       this.dataId = res.id;
       this.AcceptOrder = user;
@@ -89,8 +92,13 @@ export class ShOrderInfoPage implements OnInit {
       if (res.shopperChat == null) {
         this.shopperChat()
       }
-
       this.custChatID = res.shopperChat
+
+      if (res.shopperAdminChat == null) {
+        this.adminChat()
+      }
+
+      this.adminShopper = res.shopperAdminChat
       
 
     });
@@ -113,6 +121,10 @@ export class ShOrderInfoPage implements OnInit {
 
   toShopperChat() {
     this.router.navigateByUrl('/chat/' + this.custChatID)
+  }
+
+  toAdminChat() {
+    this.router.navigateByUrl('/chat/' + this.adminShopper)
   }
 
   doRefresh(event) {
@@ -138,7 +150,7 @@ export class ShOrderInfoPage implements OnInit {
     OrderStatus['quantity'] = status.Quantity;
     this.orderServiceService.update_OrderItem(this.orderId,status.id, OrderStatus);
     console.log('ITEM UPDATED!!!!!');
-  }
+  }  
 
   async updateSTATUS(){
 
@@ -176,7 +188,7 @@ export class ShOrderInfoPage implements OnInit {
   }
 
   shopperChat() {
-    this.shopTitle = "Order: " + this.orderId;
+    this.shopTitle = "SH Order: " + this.orderId;
     
     let obs = this.chatSvc.findPerson(this.custName);
     forkJoin(obs).subscribe(res => {
@@ -192,8 +204,31 @@ export class ShOrderInfoPage implements OnInit {
     
   }
 
+  adminChat() {
+    this.title = "AD Order: " + this.orderId;
+
+    let obs = this.chatSvc.findPerson('OTW_Admin');
+    forkJoin(obs).subscribe(res => {
+      console.log('Res: ', res);
+      for(let users of res) {
+        if (users.length > 0) {
+          console.log("Users: ", users)
+          this.SHusers.push(users[0]);
+        }
+      }
+      this.createAdminChat();
+    })
+  }
+
   createChat() {
     this.chatSvc.createShopperChat(this.shopTitle, this.SHusers, this.orderId)
+      .then(res => {
+        console.log(res)
+      })
+  }
+
+  createAdminChat() {
+    this.chatSvc.createAdminShopperChat(this.shopTitle, this.SHusers, this.orderId)
       .then(res => {
         console.log(res)
       })

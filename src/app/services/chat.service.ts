@@ -91,6 +91,34 @@ export class ChatService {
     })  
   }
 
+  createAdminShopperChat(title, users, order) {
+    let current = {
+      email: this.auth.currentUser.email,
+      id: this.auth.currentUserId,
+      username: this.auth.username
+    };
+    
+    let allUsers = [current, ...users];
+    return this.db.collection('groups').add({
+      title: title,
+      users: allUsers
+    }).then(res => {
+      let promises = [];
+      console.log("CHAT ID: " + res.id)
+      this.db.collection('order').doc(order).update({
+        shopperAdminID: res.id
+      })
+      for (let usr of allUsers) {
+        let oneAdd = this.db.collection(`users/${usr.id}/groups`).add({
+          id: res.id
+        });
+        promises.push(oneAdd);
+      }
+      return Promise.all(promises);
+    })  
+  }
+
+
   getChatGroups() {
     return this.db.collection(`users/${this.auth.currentUserId}/groups`).snapshotChanges().pipe(
       map(actions => actions.map(a => {

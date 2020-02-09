@@ -120,8 +120,9 @@ readOrderedOrder(){
         const custEmail = a.payload.data()['custEmail'];
         const custID = a.payload.data()['custID'];
         const totalPrice = a.payload.data()['totalPrice'];
+        const shopperAdminChat = a.payload.data()['shopperAdminID'];
 
-        return {id,name,mall,status,shopperEmail,shopperName,shopperChat,adminChat,custEmail,custID,totalPrice};
+        return {id,name,mall,status,shopperEmail,shopperName,shopperChat,adminChat,custEmail,custID,totalPrice, shopperAdminChat};
       })
     )
   }

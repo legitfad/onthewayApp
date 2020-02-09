@@ -76,7 +76,6 @@ export class FirebaseProductService {
       const productsRef = db.collection('CustomerReviews/');
          // Add to Database
       productsRef.add({
-
         comment: product.comment,
         image: product.image,
         rating: product.rating,

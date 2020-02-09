@@ -1,9 +1,10 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <!-- <ion-menu-button></ion-menu-button> -->
-          <ion-back-button></ion-back-button>
-      </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-button [routerLink] = "['/cs-activity']">
+        <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Order Information</ion-title>
     <ion-buttons slot="end">
       <ion-button [routerLink] = "['/cs-list']">
@@ -55,7 +56,7 @@
   <ion-card>
   <ion-card-content class="ion-no-padding">
     <ion-item-sliding *ngFor="let item of orderItem" (ionSwipe)="delete(item)">
-    
+  
       <ion-item>
         <ion-grid class="spacing">
         <ion-col size="3" class="ion-align-items-center">
@@ -66,12 +67,19 @@
 
       <ion-label>
         <div class = 'itemDetails'>
-    
+    <ion-col>
           <h1 class="mainName">{{item.StoreName}}</h1>
   
-    <p class="otherInfo ion-float-left" text-wrap>{{item.itemName}} x{{item.quantity}}</p>
-    <p class="otherInfo ion-float-right">{{item.itemPrice | currency}}</p>
-    </div>
+    <p class="otherInfo ion-float-left" text-wrap>{{item.itemName}}</p>
+  </ion-col>
+  <ion-col>
+    <ion-row>
+    <p class="otherInfo ion-float-right">{{item.itemPrice | currency}}  x{{item.quantity}}</p>
+  </ion-row><ion-row>
+    <p class="otherInfo ion-float-right">{{item.itemPrice * item.quantity | currency}}</p>
+  </ion-row>
+  </ion-col>  
+  </div>
       </ion-label>
     </ion-grid>
     </ion-item>
@@ -88,9 +96,9 @@
     </ion-card>
 
     <!-- order payment -->
-    <ion-card>
+    <!-- <ion-card>
       <h1></h1>
-    </ion-card>
+    </ion-card> -->
 
     <!-- // chat buttons -->
 <ion-row>
