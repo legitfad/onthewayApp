@@ -4,6 +4,8 @@ import { User } from 'src/app/models/user';
 import { FirebaseProductService } from 'src/app/services/firebase-product.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProductReview } from 'src/app/models/product';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cs-review',
@@ -22,7 +24,10 @@ export class CsReviewPage implements OnInit {
 
   constructor(
     private productService: FirebaseProductService,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router,
+    private toastController: ToastController,
+
   ) {
     this.user = this.auth.getCurrentUser();
     console.log(this.user.email);
@@ -57,6 +62,17 @@ export class CsReviewPage implements OnInit {
       prod.imageFile = this.imageFile;
       this.productService.add(prod);
     }
+
+    this.router.navigateByUrl('/cs-activity');
+    this.presentToast();
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Review submitted!',
+      duration: 2000
+    });
+    toast.present();
   }
 
   changeFile(event) {

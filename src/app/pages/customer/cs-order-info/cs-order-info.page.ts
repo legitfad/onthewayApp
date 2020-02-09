@@ -33,6 +33,8 @@ export class CsOrderInfoPage implements OnInit {
   adminChatID: null;
   shopperChatID: null;
 
+
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private orderService: OrderServiceService,
@@ -95,6 +97,11 @@ export class CsOrderInfoPage implements OnInit {
 
   toShopperChat() {
     this.router.navigateByUrl('/chat/' + this.shopperChatID);
+  }
+
+  review() {
+    this.router.navigateByUrl('/cs-review');
+    
   }
 
   async updateSTATUS() {

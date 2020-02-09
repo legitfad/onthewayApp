@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/sh-activity'
+    redirectTo: '/tabs/tabs/sh-activity'
   }
 
 ];

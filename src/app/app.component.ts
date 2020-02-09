@@ -25,13 +25,18 @@ export class AppComponent {
 
   public allPagesMenu = [
     {
-      title: 'My Orders',
-      url: '/cs-activity',
+      title: 'Pick location',
+      url: '/map',
       icon: 'cash'    
     },
     {
       title: 'Stores',
       url: '/cs-list',
+      icon: 'cash'    
+    },
+    {
+      title: 'My Orders',
+      url: '/cs-activity',
       icon: 'cash'    
     },
     {
