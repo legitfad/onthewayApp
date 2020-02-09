@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { AlertController, ToastController, LoadingController } from '@ionic/angular';
+import { AlertController, ToastController, LoadingController, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,6 +21,7 @@ export class LoginPage implements OnInit {
     private toastCtrl: ToastController, 
     private router: Router,
     private loadingCtrl: LoadingController,
+    private menuCtrl: MenuController,
     
   ) {  }
 
@@ -30,6 +31,10 @@ export class LoginPage implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
+
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
+   }
 
  login() {
     this.auth.signIn(this.loginForm.value).subscribe(user => {

@@ -24,7 +24,6 @@ export class CartPage implements OnInit {
     private cartService: FirebaseCartService,
     private chatSvc: ChatService,
 
-
   ) { }
 
   delete(item: CartItem) {    

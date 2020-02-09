@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderServiceService } from 'src/app/services/order-services/order-service.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sh-history',
@@ -11,7 +12,9 @@ export class ShHistoryPage implements OnInit {
   completeOrder: Array<any>;
 
   constructor(
-    private orderService: OrderServiceService
+    private orderService: OrderServiceService,
+    private menuCtrl: MenuController,
+
   ) {
     this.orderService.readCompleteOrder().subscribe(res => {
       console.log('res: ', res);
@@ -20,6 +23,10 @@ export class ShHistoryPage implements OnInit {
    }
 
   ngOnInit() {
+  }
+  
+  ionViewWillEnter() {
+    this.menuCtrl.enable(false);
   }
 
 }
