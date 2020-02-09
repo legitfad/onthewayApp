@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../models/product';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireFunctions } from '@angular/fire/functions';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +11,12 @@ import { Product } from '../models/product';
 export class ProductService {
 
   allProducts: Product[] = [];
-  constructor() {
+  constructor(
+    private db: AngularFirestore, 
+    private afAuth: AngularFireAuth, 
+    private storage: AngularFireStorage,
+    private functions: AngularFireFunctions
+  ) {
     this.allProducts = [ 
       new Product('Nescafe Instant Soluble Coffee Jar - Classic', 8.4, 'assets/nescafeclassic.jpg','Beverage', '1'),      
       new Product('Dilmah Infusion Pure Tea Bags - Camomile Flower', 5.5, 'assets/dilmahcamomiletea.jpg','Beverage', '2'),      
@@ -43,17 +52,25 @@ export class ProductService {
      this.allProducts.push(product);        
     }
 
-    update(product: Product) {    
-      // Find the array index which starts from 0    
-      const index = this.allProducts.findIndex(      
-        item => item.id === product.id
-        );
-        const ref = this.allProducts[index];    
+  update(product: Product) {    
+    // Find the array index which starts from 0    
+    const index = this.allProducts.findIndex(      
+      item => item.id === product.id
+          );
+    const ref = this.allProducts[index];    
         // Update everything except the id (which is the unique key)    
         ref.name = product.name;    
         ref.price = product.price;    
         ref.image = product.image;    
         ref.category = product.category;    
-      } 
-   }
+  } 
+
+  startPaymentIntent(amount, items) {
+    const callable = this.functions.httpsCallable('startPaymentIntent');
+    const obs = callable({ userId: this.afAuth.auth.currentUser.uid, amount, items});
+    return obs;
+  }
+
+
+}
 
