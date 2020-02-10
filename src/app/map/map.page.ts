@@ -70,7 +70,6 @@ export class MapPage implements OnInit {
       '</div>' +
       '<h1 id="firstHeading" class="firstHeading"></h1>' +
       '<div id="bodyContent">' +
-      '<img src="assets/icon/gg.png" width="200">' +
       '<p><b>OTW </b> Best shopping experience u never had</p>' +
       ' '
       +'<a href="/cs-list">Shop Now</a>'
